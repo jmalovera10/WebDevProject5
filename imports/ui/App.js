@@ -5,7 +5,21 @@ import {withTracker} from "meteor/react-meteor-data";
 import "./App.css";
 
 class App extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            location: "index",
+            userLocation: "index"
+        }
+    }
 
+    render(){
+        return(
+            <div>
+
+            </div>
+        );
+    }
 }
 
 export default withTracker(() => {
