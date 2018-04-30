@@ -2,50 +2,250 @@
 Index styles
  ------------*/
 
-.main {
-    height: 100vh;
+
+@media screen and (min-width: 1200px) {
+    .main {
+        height: 100vh;
+    }
+
+    .main-interactions {
+        margin-top: 50%;
+        margin-bottom: 50%;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .main-visualization {
+        height: 100%;
+    }
+
+    .center-items {
+        margin: auto;
+        position: center;
+        text-align: center;
+    }
+
+    .sign-up-button-container {
+        padding-top: 2%;
+    }
+
+    .sign-up-button {
+        border-radius: 3px;
+    }
+
+    .login-button-container {
+        padding-top: 2%;
+    }
+
+    .login-button {
+        border-radius: 3px;
+    }
+
+    .slogan {
+        font-size: 30px;
+        text-align: left;
+    }
+
+    .invitation {
+        font-size: 25px;
+        text-align: left;
+        margin-top: 5%;
+    }
 }
 
-.main-interactions {
-    margin-top: 50%;
-    margin-bottom: 50%;
-    padding-left: 10%;
-    padding-right: 10%;
+@media screen and (max-width: 1200px) {
+    .main {
+        height: 100vh;
+    }
+
+    .main-interactions {
+        margin-top: 50%;
+        margin-bottom: 50%;
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    .main-visualization {
+        height: 100%;
+    }
+
+    .center-items {
+        margin: auto;
+        position: center;
+        text-align: center;
+    }
+
+    .sign-up-button-container {
+        padding-top: 2%;
+    }
+
+    .sign-up-button {
+        border-radius: 3px;
+    }
+
+    .login-button-container {
+        padding-top: 2%;
+    }
+
+    .login-button {
+        border-radius: 3px;
+    }
+
+    .slogan {
+        font-size: 30px;
+        text-align: left;
+    }
+
+    .invitation {
+        font-size: 25px;
+        text-align: left;
+        margin-top: 5%;
+    }
 }
 
-.main-visualization {
-    height: 100%;
+@media screen and (min-width: 760px) and (max-width: 990px) {
+
+    .main {
+        height: 100vh;
+    }
+
+    .main-interactions {
+        margin-top: 50%;
+        margin-bottom: 50%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .main-visualization {
+        height: 100%;
+    }
+
+    .center-items {
+        margin: auto;
+        position: center;
+        text-align: center;
+    }
+
+    .sign-up-button-container {
+        padding-top: 2%;
+    }
+
+    .sign-up-button {
+        border-radius: 3px;
+    }
+
+    .login-button-container {
+        padding-top: 2%;
+    }
+
+    .login-button {
+        border-radius: 3px;
+    }
+
+    .slogan {
+        font-size: 30px;
+        text-align: left;
+    }
+
+    .invitation {
+        font-size: 25px;
+        text-align: left;
+        margin-top: 5%;
+    }
 }
 
-.center-items {
-    margin: auto;
-    position: center;
-    text-align: center;
+@media screen and (min-width: 575px) and (max-width: 760px) {
+
+    .main {
+
+    }
+
+    .main-interactions {
+
+    }
+
+    .main-visualization {
+
+    }
+
+    .center-items {
+        margin: auto;
+        position: center;
+        text-align: center;
+    }
+
+    .sign-up-button-container {
+        padding-top: 2%;
+    }
+
+    .sign-up-button {
+        border-radius: 3px;
+    }
+
+    .login-button-container {
+        padding-top: 2%;
+    }
+
+    .login-button {
+        border-radius: 3px;
+    }
+
+    .slogan {
+        font-size: 30px;
+        text-align: left;
+    }
+
+    .invitation {
+        font-size: 25px;
+        text-align: left;
+        margin-top: 5%;
+    }
 }
 
-.sign-up-button-container {
-    padding-top: 2%;
-}
+@media screen and (max-width: 575px) {
 
-.sign-up-button {
-    border-radius: 3px;
-}
+    .main {
 
-.login-button-container {
-    padding-top: 2%;
-}
+    }
 
-.login-button {
-    border-radius: 3px;
-}
+    .main-interactions {
 
-.slogan {
-    font-size: 30px;
-    text-align: left;
-}
+    }
 
-.invitation {
-    font-size: 25px;
-    text-align: left;
-    margin-top: 5%;
+    .main-visualization {
+        height: 100%;
+    }
+
+    .center-items {
+        margin: auto;
+        position: center;
+        text-align: center;
+    }
+
+    .sign-up-button-container {
+        padding-top: 2%;
+    }
+
+    .sign-up-button {
+        border-radius: 3px;
+    }
+
+    .login-button-container {
+        padding-top: 2%;
+    }
+
+    .login-button {
+        border-radius: 3px;
+    }
+
+    .slogan {
+        font-size: 30px;
+        text-align: left;
+    }
+
+    .invitation {
+        font-size: 25px;
+        text-align: left;
+        margin-top: 5%;
+    }
 }
