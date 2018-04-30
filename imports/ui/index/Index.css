@@ -1,0 +1,50 @@
+/*-----------
+Index styles
+ ------------*/
+
+.main {
+    height: 100vh;
+}
+
+.main-interactions {
+    margin-top: 50%;
+    margin-bottom: 50%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.main-visualization {
+    height: 100%;
+}
+
+.center-items {
+    margin: auto;
+    position: center;
+    text-align: center;
+}
+
+.sign-up-button-container {
+    padding-top: 2%;
+}
+
+.sign-up-button {
+    border-radius: 3px;
+}
+
+.login-button-container {
+    padding-top: 2%;
+}
+
+.login-button {
+    border-radius: 3px;
+}
+
+.slogan {
+    font-size: 35px;
+    text-align: left;
+}
+
+.invitation {
+    font-size: 25px;
+    text-align: left;
+}

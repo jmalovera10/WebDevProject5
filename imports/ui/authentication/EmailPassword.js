@@ -26,11 +26,11 @@ export default class EmailPassword extends Component {
     render() {
         return (
             <div className="col-md-3 col-10">
-                <div className={"card "+(this.props.typeAuth==="Register"?"auth-card-register":"auth-card-login")}>
+                <div className={"card "+(this.props.typeAuth==="Sign Up"?"auth-card-register":"auth-card-login")}>
                     <h2 className="auth-card-title">{this.props.typeAuth}</h2>
                     <form onSubmit={this.props.submitAction}>
                         {
-                            this.props.typeAuth === "Register" ?
+                            this.props.typeAuth === "Sign Up" ?
                                 <div className={"form-group "+ (this.props.usernameError && !$("#username").is(":focus") ?
                                     "has-danger" : "")}>
                                     <label htmlFor="username">Username:</label>
@@ -47,16 +47,16 @@ export default class EmailPassword extends Component {
                                 </div>
                                 : null
                         }
-                        <div className={"form-group " + (this.props.typeAuth !== "Register" ?
+                        <div className={"form-group " + (this.props.typeAuth !== "Sign Up" ?
                             (this.props.loginError && !$("#emailLogin").is(":focus") ? "has-danger" : "") : "") +
-                        (this.props.typeAuth === "Register" ?
+                        (this.props.typeAuth === "Sign Up" ?
                             (this.props.emailError && !$("#emailRegister").is(":focus") ? "has-danger" : "") : "")}>
                             <label htmlFor="email">
                                 Email:</label>
                             <input placeholder="email@example.com" type="email" id={"email" + this.props.typeAuth}
-                                   className={"form-control " + (this.props.typeAuth !== "Register" ?
+                                   className={"form-control " + (this.props.typeAuth !== "Sign Up" ?
                                        (this.props.loginError && !$("#emailLogin").is(":focus") ? "form-control-danger" : "") : "")
-                                   + (this.props.typeAuth === "Register" ?
+                                   + (this.props.typeAuth === "Sign Up" ?
                                        (this.props.emailError && !$("#emailRegister").is(":focus") ? "form-control-danger" : "") : "")}
                                    onChange={this.handleEmail.bind(this)}
                                    aria-label="Text input for email"
@@ -66,11 +66,11 @@ export default class EmailPassword extends Component {
                                     <small className="form-control-feedback">Email already exists!</small> : null
                             }
                         </div>
-                        <div className={"form-group " + (this.props.typeAuth !== "Register" ?
+                        <div className={"form-group " + (this.props.typeAuth !== "Sign Up" ?
                             (this.props.loginError && !$("#passwordLogin").is(":focus") ? "has-danger" : "") : "")}>
                             <label htmlFor="Password">Password:</label>
                             <input placeholder="Password" type="password" id={"password" + this.props.typeAuth}
-                                   className={"form-control " + (this.props.typeAuth !== "Register" ?
+                                   className={"form-control " + (this.props.typeAuth !== "Sign Up" ?
                                        (this.props.loginError && !$("#passwordLogin").is(":focus") ? "form-control-danger" : "") : "")}
                                    onChange={this.handlePswd.bind(this)}
                                    aria-label="Text input for password"
@@ -82,7 +82,7 @@ export default class EmailPassword extends Component {
                             }
                         </div>
                         {
-                            this.props.typeAuth === "Register" ?
+                            this.props.typeAuth === "Sign Up" ?
                                 <div className={"form-group " + ($("#passwordVer").is(":focus") ?
                                     (this.props.match ? "has-success" : "has-danger") : "")}>
                                     <label htmlFor="password">Confirm Password:</label>

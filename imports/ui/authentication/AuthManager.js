@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from "prop-types";
 import EmailPassword from "./EmailPassword.js";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -14,7 +15,6 @@ export default class AuthManager extends Component{
             email: null,
             pswd: null,
             pswdVer: null,
-            isLogin: this.props.authType === "login",
             disableButton: true,
             processingAuth: false,
             loginError: false,
@@ -59,8 +59,10 @@ export default class AuthManager extends Component{
     verifyInput() {
         let emailRegex = /^\S+@\S+(\.\S+)+$/;
         this.setState({
-            disableButton: !((this.state.email && this.state.email !== "") && (this.state.pswd && this.state.pswd !== "") ?
-                emailRegex.test(this.state.email) : false)
+            disableButton: (this.props.isLogin?!((this.state.email && this.state.email !== "") && (this.state.pswd && this.state.pswd !== "") ?
+                emailRegex.test(this.state.email) : false):!((this.state.username && this.state.username !== "") && (this.state.email && this.state.email !== "")
+            && (this.state.pswd && this.state.pswd !== "") && (this.state.pswdVer && this.state.pswdVer !== "") ?
+                emailRegex.test(this.state.email) : false))
         });
     }
 
@@ -130,8 +132,8 @@ export default class AuthManager extends Component{
                             </MuiThemeProvider>
                         </div>
                         : < EmailPassword
-                            submitAction={this.loginWithPassword}
-                            isLogin={this.state.isLogin}
+                            submitAction={this.props.isLogin?this.loginWithPassword:this.createUser}
+                            isLogin={this.props.isLogin}
                             onUsernameChange={this.handleUsernameChange}
                             onEmailChange={this.handleEmailChange}
                             onPswdChange={this.handlePswdChange}
@@ -141,6 +143,7 @@ export default class AuthManager extends Component{
                             match={this.state.pswdMatch}
                             emailError={this.state.emailError}
                             usernameError={this.state.usernameError}
+                            typeAuth={this.props.typeAuth}
                         />
                 }
             </div>
@@ -148,3 +151,8 @@ export default class AuthManager extends Component{
     }
 
 }
+
+AuthManager.propTypes = {
+    isLogin: PropTypes.bool.isRequired,
+    typeAuth: PropTypes.string.isRequired,
+};

@@ -1,0 +1,64 @@
+/*--------------------------
+Auth modules styles
+---------------------------*/
+
+.center-items {
+    text-align: center;
+    margin: auto;
+    position: center;
+
+}
+
+.auth-card-login {
+    background: #149CDB ;
+    color: #304057;
+    margin-top: 40%;
+    margin-bottom: 40%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.auth-card-register{
+    background: #149CDB;
+    color: #304057;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.auth-card-title {
+    color: #FAFAFA;
+    font-family: "Nova Slim", sans-serif;
+    padding-top: 3%;
+}
+
+.form-group label {
+    font-family: "Hind Madurai", sans-serif;
+    text-align: left;
+    position: initial;
+}
+
+.auth-button {
+    background: #FF8E0B;
+    color: #FAFAFA;
+    font-family: "Nova Slim", sans-serif;
+    margin-bottom: 5%;
+}
+
+.complete-viewport {
+    /*width: 100vw;*/
+}
+
+.circular-progress {
+    margin-top: 20%;
+    margin-bottom: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.auth-text {
+    color: rgb(183, 183, 157);
+    font-family: 'Nova Slim', cursive;
+    font-size: 35px;
+}
