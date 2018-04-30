@@ -29,7 +29,7 @@ export default class AuthManager extends Component{
         this.handlePswdVerChange = this.handlePswdVerChange.bind(this);
         this.loginWithPassword = this.loginWithPassword.bind(this);
         this.createUser = this.createUser.bind(this);
-        
+
     }
 
     handleUsernameChange(val) {
