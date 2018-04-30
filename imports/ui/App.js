@@ -3,6 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import {withTracker} from "meteor/react-meteor-data";
 
 import "./App.css";
+import BubbleChart from "./D3/BubbleChart";
 
 class App extends Component {
     constructor(props){
@@ -16,7 +17,7 @@ class App extends Component {
     render(){
         return(
             <div>
-
+                <BubbleChart/>
             </div>
         );
     }
