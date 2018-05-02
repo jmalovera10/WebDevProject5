@@ -55,6 +55,8 @@ export default class BubbleChart extends Component {
 
 
         var nodes = pack.nodes(this.data);
+        var t = d3.transition()
+            .duration(2050);
 
         var node = chart.selectAll(".node")
             .data(nodes).enter()
@@ -65,7 +67,7 @@ export default class BubbleChart extends Component {
         node.append("circle")
             .attr("r",function(d) { return d.r; })
             .attr("fill", function(d){
-                if (d.children) return "#fff"
+                if (d.children) return "rgba(0,0,0,0)";
                 switch (d.name) {
                     case "anger":
                         return "red";
@@ -88,7 +90,7 @@ export default class BubbleChart extends Component {
             }) //make nodes with children invisible
             .attr("opacity", 0.25)
             .attr("stroke", function(d) {
-                if (d.children) return "#fff"
+                if (d.children) return "";
                 switch (d.name) {
                     case "anger":
                         return "red";
@@ -109,7 +111,8 @@ export default class BubbleChart extends Component {
             } ) //make nodes with children invisible
             .attr("stroke-width", 2);
 
-        node.append("text")
+
+        node.append("text").transition(t)
             .text(function(d) { return d.children ? "" : d.name; });
 
 
