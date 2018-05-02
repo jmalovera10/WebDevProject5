@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Meteor} from 'meteor/meteor';
 import {withTracker} from "meteor/react-meteor-data";
 import Index from "./index/Index.js";
+import NavbarUser from "./navbar/NavbarUser.js";
 import UserIndex from "./index/UserIndex.js";
 import AuthManager from "./authentication/AuthManager.js";
 
@@ -28,12 +29,12 @@ class App extends Component {
     }
 
     goToIndexUser() {
-        Meteor.call('appusers.updateUserLocation',"index","null");
+        Meteor.call('appusers.updateUserLocation', "index", "null");
         this.setState({userLocation: "index"});
     }
 
     goToSignUp() {
-        this.setState({location: "Sign Up"});
+        this.setState({location: "SignUp"});
     }
 
     goToLogin() {
@@ -46,13 +47,18 @@ class App extends Component {
 
     render() {
         return (
-            <div className="container-fluid app-content">
+            <div className="app-content">
                 {
                     this.props.currentUser ?
-                        <UserIndex/> :
-                        this.state.location === "index" ?
-                            <Index goToLogin={this.goToLogin} goToSignUp={this.goToSignUp}/> :
-                            <AuthManager isLogin={this.state.location === "Login"} typeAuth={this.state.location}/>
+                        <NavbarUser onLogoutCallback={this.handleLogoutSubmit}/>
+                        : null
+                }
+                {
+                    this.props.currentUser ?
+                        <UserIndex/>
+                        : this.state.location === "index" ?
+                        <Index goToLogin={this.goToLogin} goToSignUp={this.goToSignUp}/> :
+                        <AuthManager isLogin={this.state.location === "Login"} typeAuth={this.state.location}/>
                 }
             </div>
         );
