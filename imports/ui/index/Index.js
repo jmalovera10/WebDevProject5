@@ -9,8 +9,7 @@ export default class Index extends Component {
         return (
             <div className="row justify-content-around main">
                 <div className="col-md-6 main-visualization  center-items">
-                    {/*<BubbleChart/>*/}
-                    <h1>holi</h1>
+                    <BubbleChart/>
                 </div>
                 <div className="col-md-6 main-interactions center-items">
                     <h1 className="slogan">

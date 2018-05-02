@@ -6,6 +6,7 @@ import UserIndex from "./index/UserIndex.js";
 import AuthManager from "./authentication/AuthManager.js";
 
 import "./App.css";
+import BubbleChart from "./D3/BubbleChart";
 
 class App extends Component {
     constructor(props) {
