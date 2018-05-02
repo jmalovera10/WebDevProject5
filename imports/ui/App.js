@@ -54,6 +54,7 @@ class App extends Component {
                             <Index goToLogin={this.goToLogin} goToSignUp={this.goToSignUp}/> :
                             <AuthManager isLogin={this.state.location === "Login"} typeAuth={this.state.location}/>
                 }
+
             </div>
         );
     }
