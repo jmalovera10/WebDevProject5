@@ -44,7 +44,12 @@ class App extends Component {
     handleLogoutSubmit() {
         Meteor.logout();
     }
-
+    componentDidMount(){
+        Meteor.call("tones.new", "I'm sad", (err,res)=>{
+            if (err) throw err;
+            console.log(res);
+        });
+    }
     render() {
         return (
             <div className="app-content">

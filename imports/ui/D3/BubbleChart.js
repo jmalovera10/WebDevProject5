@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import * as d3 from "d3";
+import {Meteor} from 'meteor/meteor';
 
+import {Tones} from "../../api/Tones.js";
 
 // App component - represents the whole app
 
@@ -47,16 +49,16 @@ export default class BubbleChart extends Component {
             .append("g")
             .attr("transform", "translate(50,50)");
 
-        var pack = d3.layout.pack()
+        let pack = d3.layout.pack()
             .size([this.width-50, this.height - 50])
             .padding(10);
 
 
-        var nodes = pack.nodes(this.data);
-        var t = d3.transition()
+        let nodes = pack.nodes(this.data);
+        let t = d3.transition()
             .duration(2050);
 
-        var node = this.chart.selectAll(".node")
+        let node = this.chart.selectAll(".node")
             .data(nodes).enter()
             .append("g")
             .attr("class", "node")
