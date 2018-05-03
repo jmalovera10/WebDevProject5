@@ -26,10 +26,10 @@ Meteor.methods({
         let ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
         let toneAnalyzer = new ToneAnalyzerV3({
-            username: '9cf32683-7918-4fbf-98be-abc47b0fbebe',
-            password: 'yxNXAor1HwBd',
+            username: process.env.IBM_USERNAME,
+            password: process.env.IBM_PASSWORD,
             version: '2017-09-21',
-            url: 'https://gateway.watsonplatform.net/tone-analyzer/api/v3/tone'
+            url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
         });
 
         toneAnalyzer.tone(
