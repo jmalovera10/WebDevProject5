@@ -1,4 +1,4 @@
  // username: '9cf32683-7918-4fbf-98be-abc47b0fbebe',
             //password: 'yxNXAor1HwBd',
 
-            cross-env IBM_USERNAME=9cf32683-7918-4fbf-98be-abc47b0fbebe IBM_PASSWORD=yxNXAor1HwBd meteor     
+            cross-env IBM_USERNAME=9cf32683-7918-4fbf-98be-abc47b0fbebe IBM_PASSWORD=yxNXAor1HwBd meteor
