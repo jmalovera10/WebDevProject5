@@ -23,34 +23,33 @@ export default class BubbleChart extends Component {
     }
     componentDidMount() {
 
-        this.width = 1000;
-        this.height = 1000;
+
         this.padding = 50; // separation between same-color nodes
 
 
 
-        let sum= this.state.anger+this.state.confident+this.state.analytical+this.state.fear+this.state.joy+this.state.sadness+this.state.tentative;
+        let sum= this.props.anger+this.props.confident+this.props.analytical+this.props.fear+this.props.joy+this.props.sadness+this.props.tentative;
            this.data = {
                name: "emotions",
                value: 150,
                children:
-               [{name:"anger", cluster:0, value: this.state.anger/sum*100},
-           {name:"fear", cluster:1, value: this.state.fear/sum*100},
-           {name:"joy", cluster:2, value: this.state.joy/sum*100},
-           {name:"sadness", cluster:3, value: this.state.sadness/sum*100},
-        {name:"analytical", cluster:4, value: this.state.analytical/sum*100},
-        {name:"confident", cluster:5, value: this.state.confident/sum*100},
-        {name:"tentative", cluster:6, value: this.state.tentative/sum*100}]};
+               [{name:"anger", cluster:0, value: this.props.anger/sum*100},
+           {name:"fear", cluster:1, value: this.props.fear/sum*100},
+           {name:"joy", cluster:2, value: this.props.joy/sum*100},
+           {name:"sadness", cluster:3, value: this.props.sadness/sum*100},
+        {name:"analytical", cluster:4, value: this.props.analytical/sum*100},
+        {name:"confident", cluster:5, value: this.props.confident/sum*100},
+        {name:"tentative", cluster:6, value: this.props.tentative/sum*100}]};
 
 
 
         this.chart = d3.select(this.canvas).append("svg")
-            .attr("width", this.width).attr("height", this.height)
+            .attr("width", this.props.width).attr("height", this.props.height)
             .append("g")
             .attr("transform", "translate(50,50)");
 
         let pack = d3.layout.pack()
-            .size([this.width-50, this.height - 50])
+            .size([this.props.width-50, this.props.height - 50])
             .padding(10);
 
 
@@ -123,27 +122,27 @@ export default class BubbleChart extends Component {
         console.log("Will update");
 
 
-        let sum= this.state.anger+this.state.confident+this.state.analytical+this.state.fear+this.state.joy+this.state.sadness+this.state.tentative;
+        let sum= this.props.anger+this.props.confident+this.props.analytical+this.props.fear+this.props.joy+this.props.sadness+this.props.tentative;
         this.data = {
             name: "emotions",
             value: 150,
             children:
-                [{name:"anger", cluster:0, value: this.state.anger/sum*100},
-                    {name:"fear", cluster:1, value: this.state.fear/sum*100},
-                    {name:"joy", cluster:2, value: this.state.joy/sum*100},
-                    {name:"sadness", cluster:0, value: this.state.sadness/sum*100},
-                    {name:"analytical", cluster:1, value: this.state.analytical/sum*100},
-                    {name:"confident", cluster:2, value: this.state.confident/sum*100},
-                    {name:"tentative", cluster:0, value: this.state.tentative/sum*100}]};
+                [{name:"anger", cluster:0, value: this.props.anger/sum*100},
+                    {name:"fear", cluster:1, value: this.props.fear/sum*100},
+                    {name:"joy", cluster:2, value: this.props.joy/sum*100},
+                    {name:"sadness", cluster:0, value: this.props.sadness/sum*100},
+                    {name:"analytical", cluster:1, value: this.props.analytical/sum*100},
+                    {name:"confident", cluster:2, value: this.props.confident/sum*100},
+                    {name:"tentative", cluster:0, value: this.props.tentative/sum*100}]};
 
 
         this.chart.remove();
         this.chart = d3.select(this.canvas).select("svg")
-            .attr("width", this.width).attr("height", this.height)
+            .attr("width", this.props.width).attr("height", this.props.height)
             .append("g")
             .attr("transform", "translate(50,50)");
         var pack = d3.layout.pack()
-            .size([this.width-50, this.height - 50])
+            .size([this.props.width-50, this.props.height - 50])
             .padding(10);
 
 
@@ -221,7 +220,7 @@ export default class BubbleChart extends Component {
         return (
             <div>
             <div ref={(div)=>this.canvas=div} ></div>
-                <button onClick={this.moreJoy}>More Joy</button>
+
             </div>
                 );
 
