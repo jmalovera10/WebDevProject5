@@ -46,7 +46,7 @@ export default class Carousel extends Component {
                                          tentative={55.7}/>
                         </div>
                         <div className="carousel-item">
-                        <StatsChart data={this.state.data}/>
+                        <StatsChart width={700} height={550} data={this.state.data}/>
                         </div>
                         <div className="carousel-item">
                             <BubbleChart width={750} height={600}
