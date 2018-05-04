@@ -23,8 +23,8 @@ export default class BubbleChart extends Component {
     }
     componentDidMount() {
 
-        this.width = 1000;
-        this.height = 1000;
+        this.width = this.props.width;
+        this.height = this.props.height;
         this.padding = 50; // separation between same-color nodes
 
 

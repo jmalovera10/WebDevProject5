@@ -6,7 +6,6 @@ import "./UserIndex.css";
 import BubbleChart from "../D3/BubbleChart";
 import RecordAction from 'material-ui/svg-icons/av/mic';
 import {red700} from 'material-ui/styles/colors';
-import Recorder from 'react-recorder'
 
 export default class UserIndex extends Component {
     constructor(props){
@@ -21,7 +20,7 @@ export default class UserIndex extends Component {
             <div>
                 <div className="row">
                     <div className="col-sm-8 col-12">
-                        <BubbleChart/>
+                        <BubbleChart width={750} height={600}/>
                     </div>
                     <div className="col-sm-4 col-6">
                         <MuiThemeProvider>
@@ -47,7 +46,6 @@ export default class UserIndex extends Component {
                                         icon={<RecordAction color={red700}/>}
                                     />
                                 </MuiThemeProvider>
-                                {/*<Recorder onStop={this.onStop} />*/}
 
                             </div>
                         </div>
