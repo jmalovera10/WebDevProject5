@@ -11,11 +11,10 @@ export default class StatsChart extends Component{
                            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                     <XAxis  dataKey="name" />
                     <YAxis orientation="left" domain={["dataMin", "dataMax"]}/>
-                    <CartesianGrid strokeDasharray="3 3"/>
                     <Tooltip/>
                     <br/>
                     <Legend />
-                    <Line type="monotone" dataKey="joy" stroke="yellow" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="joy" stroke="rgb(221, 144, 37)" activeDot={{r: 8}}/>
                     <Line type="monotone" dataKey="sadness" stroke="blue" activeDot={{r: 8}}/>
                     <Line type="monotone" dataKey="fear" stroke="black" activeDot={{r: 8}}/>
                 </LineChart>
