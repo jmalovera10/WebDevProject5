@@ -164,7 +164,7 @@ export default class BubbleChart extends Component {
                     case "anger":
                         return "red";
                     case "joy":
-                        return "yellow";
+                        return "rgb(221, 144, 37)";
                     case "confident":
                         return "green";
                     case "analytical":
@@ -187,7 +187,7 @@ export default class BubbleChart extends Component {
                     case "anger":
                         return "red";
                     case "joy":
-                        return "yellow";
+                        return "rgb(221, 144, 37)";
                     case "confident":
                         return "green";
                     case "analytical":

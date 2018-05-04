@@ -11,13 +11,13 @@ export default class Carousel extends Component {
         this.state={
             data:[
 
-                {name: 'Dia 1', joy: 0.2, fear: 0.4, sadness: 0.9},
-                {name: 'Dia 2', joy: 0.4, fear: 0.3, sadness: 0.8},
-                {name: 'Dia 3', joy: 0.6, fear: 0.7, sadness: 0.77},
-                {name: 'Dia 4', joy: 0.8, fear: 0.8, sadness: 0.3},
-                {name: 'Dia 5', joy: 0.88, fear: 0.1, sadness: 0.6},
-                {name: 'Dia 6', joy: 0.6, fear: 0.11, sadness: 0.1},
-                {name: 'Dia 7', joy: 0.9, fear: 0.01, sadness: 0.8},
+                {name: 'Dia 1', anger: 0.7, joy: 0.2, fear: 0.4, sadness: 0.9, confident: 0.1, analytical:0.01, tentative:0.8},
+                {name: 'Dia 2', anger: 0.66,joy: 0.4, fear: 0.3, sadness: 0.8, confident: 0.15, analytical:0.21, tentative:0.7},
+                {name: 'Dia 3', anger: 0.7,joy: 0.6, fear: 0.7, sadness: 0.77, confident: 0.1, analytical:0.0123, tentative:0.8},
+                {name: 'Dia 4', anger: 0.8,joy: 0.8, fear: 0.8, sadness: 0.3, confident: 0.2, analytical:0.1, tentative:0.9},
+                {name: 'Dia 5', anger: 0.6,joy: 0.88, fear: 0.1, sadness: 0.6, confident: 0.1, analytical:0.013, tentative:0.6},
+                {name: 'Dia 6', anger: 0.5,joy: 0.6, fear: 0.11, sadness: 0.1, confident: 0.4, analytical:0.016, tentative:0.4},
+                {name: 'Dia 7', anger: 0.33,joy: 0.9, fear: 0.01, sadness: 0.8, confident: 0.5, analytical:0.09, tentative:0.1},
             ]
         }
     }
