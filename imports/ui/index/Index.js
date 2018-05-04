@@ -9,10 +9,10 @@ export default class Index extends Component {
         return (
             <div className="row justify-content-around main">
                 <div className="col-md-6 main-visualization  center-items">
-                    <BubbleChart width={1200} height={900} anger={20.3}
+                    <BubbleChart width={900} height={900} anger={20.3}
                                  fear={ 70.5}
                                  joy={1000.3}
-                                 sadness={8.5}
+                                 sadness={20.5}
                                  analytical={ 160.5}
                                  confident= {900.14}
                                  tentative={550.7}/>
