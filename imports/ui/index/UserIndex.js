@@ -20,7 +20,13 @@ export default class UserIndex extends Component {
             <div>
                 <div className="row">
                     <div className="col-sm-8 col-12">
-                        <BubbleChart width={750} height={600}/>
+                        <BubbleChart width={750} height={600} anger={20.3}
+                        fear={ 70.5}
+                        joy={10.3}
+                        sadness={80.5}
+                        analytical={ 60.5}
+                        confident= {90.14}
+                        tentative={55.7}/>
                     </div>
                     <div className="col-sm-4 col-6">
                         <MuiThemeProvider>

@@ -21,6 +21,10 @@ Meteor.methods({
 
     'tones.new'(text) {
         check(text,String);
+        return Meteor.call("tones.callWatson", text);
+
+    },'tones.callWatson'(text) {
+        check(text,String);
         console.log(text);
         global.Buffer = global.Buffer|| require('buffer').Buffer;
 
