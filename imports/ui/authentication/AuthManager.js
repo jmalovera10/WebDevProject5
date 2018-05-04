@@ -81,7 +81,6 @@ export default class AuthManager extends Component{
                 });
             } else {
                 this.setState({loginError: false})
-                Meteor.call('appusers.online');
             }
         });
     }
@@ -112,8 +111,6 @@ export default class AuthManager extends Component{
                         usernameError: true,
                     });
                 }
-            } else {
-                Meteor.call('appusers.insert', true);
             }
         });
     }

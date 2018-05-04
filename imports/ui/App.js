@@ -29,7 +29,6 @@ class App extends Component {
     }
 
     goToIndexUser() {
-        Meteor.call('appusers.updateUserLocation', "index", "null");
         this.setState({userLocation: "index"});
     }
 
