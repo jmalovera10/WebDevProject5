@@ -16,6 +16,15 @@ if (Meteor.isServer) {
         return Tones.find({userId: this.userId});
 
     });
-    
+
 
 }
+
+Meteor.methods({
+
+    'tones.insert'(tone) {
+        check(tone, Object);
+        console.log(tone);
+        Tones.insert(tone);
+        console.log(Tones.find({}).fetch());
+    };
