@@ -67,13 +67,14 @@ export default class UserIndex extends Component {
                         <MuiThemeProvider>
                             <Subheader>Today's results</Subheader>
                         </MuiThemeProvider>
-                        <BubbleChart width={350} height={400} anger={20.3}
-                                     fear={70.5}
-                                     joy={10.3}
-                                     sadness={80.5}
-                                     analytical={6.5}
-                                     confident={9.14}
-                                     tentative={55.7}/>
+                        <BubbleChart width={350} height={400}
+                                     anger={1}
+                                     fear={1}
+                                     joy={1}
+                                     sadness={1}
+                                     analytical={1}
+                                     confident={1}
+                                     tentative={1}/>
                     </div>
                 </div>
             </div>
