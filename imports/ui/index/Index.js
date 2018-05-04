@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
-import BubbleChart from "../D3/BubbleChart";
 
 import "./Index.css";
 
@@ -9,13 +8,7 @@ export default class Index extends Component {
         return (
             <div className="row justify-content-around main">
                 <div className="col-md-6 main-visualization  center-items">
-                    <BubbleChart width={900} height={900} anger={20.3}
-                                 fear={ 70.5}
-                                 joy={1000.3}
-                                 sadness={20.5}
-                                 analytical={ 160.5}
-                                 confident= {900.14}
-                                 tentative={550.7}/>
+                    <img src="EmotionerLogo.PNG" alt="emotioner-logo" className="col-md-8 col-10 img-logo"/>
                 </div>
                 <div className="col-md-6 main-interactions center-items">
                     <h1 className="slogan">
