@@ -7,7 +7,7 @@ export default class StatsChart extends Component{
 
         return (
             <div className="row justify-content-around center-items chart-content">
-                <LineChart width={750} height={600} data={this.props.data}
+                <LineChart width={this.props.width} height={this.props.height} data={this.props.data}
                            margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                     <XAxis  dataKey="name" />
                     <YAxis orientation="left" domain={["dataMin", "dataMax"]}/>
