@@ -17,6 +17,10 @@ export default class StatsChart extends Component{
                     <Line type="monotone" dataKey="joy" stroke="rgb(221, 144, 37)" activeDot={{r: 8}}/>
                     <Line type="monotone" dataKey="sadness" stroke="blue" activeDot={{r: 8}}/>
                     <Line type="monotone" dataKey="fear" stroke="black" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="confident" stroke="green" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="analytical" stroke="magenta" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="anger" stroke="red" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="tentative" stroke="orange" activeDot={{r: 8}}/>
                 </LineChart>
             </div>
         );
