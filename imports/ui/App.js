@@ -5,9 +5,9 @@ import Index from "./index/Index.js";
 import NavbarUser from "./navbar/NavbarUser.js";
 import UserIndex from "./index/UserIndex.js";
 import AuthManager from "./authentication/AuthManager.js";
+import {Tones} from "/imports/api/Tones.js"
 
 import "./App.css";
-import BubbleChart from "./D3/BubbleChart";
 
 class App extends Component {
     constructor(props) {
@@ -44,23 +44,18 @@ class App extends Component {
     handleLogoutSubmit() {
         Meteor.logout();
     }
-    componentDidMount(){
-        Meteor.call("tones.new", "I'm sad", (err,res)=>{
-            if (err) throw err;
-            console.log(res);
-        });
-    }
+
     render() {
         return (
             <div className="app-content">
                 {
                     this.props.currentUser ?
-                        <NavbarUser onLogoutCallback={this.handleLogoutSubmit}/>
+                        <NavbarUser onLogoutCallback={this.handleLogoutSubmit} />
                         : null
                 }
                 {
                     this.props.currentUser ?
-                        <UserIndex/>
+                        <UserIndex tones={this.props.tones}/>
                         : this.state.location === "index" ?
                         <Index goToLogin={this.goToLogin} goToSignUp={this.goToSignUp}/> :
                         <AuthManager isLogin={this.state.location === "Login"} typeAuth={this.state.location}/>
@@ -72,14 +67,12 @@ class App extends Component {
 }
 
 export default withTracker(() => {
-    /*Meteor.subscribe("appusers");
-    Meteor.subscribe("sorteos");
-    let all = TossUps.find().fetch();
-    all.sort((a,b)=>b.createdAt-a.createdAt);
-    let users = Users.find().fetch();*/
+    Meteor.subscribe("Tones");
+    let all= Tones.find().fetch();
+    console.log(all);
+
     return {
         currentUser: Meteor.user(),
-        /*users: users,
-        sorteos: all*/
+        tones:all,
     }
 })(App);
