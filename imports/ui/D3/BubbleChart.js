@@ -220,7 +220,7 @@ export default class BubbleChart extends Component {
         return (
             <div>
             <div ref={(div)=>this.canvas=div} ></div>
-                <button onClick={this.moreJoy}>More Joy</button>
+
             </div>
                 );
 

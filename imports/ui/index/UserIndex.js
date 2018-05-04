@@ -6,27 +6,34 @@ import "./UserIndex.css";
 import BubbleChart from "../D3/BubbleChart";
 import RecordAction from 'material-ui/svg-icons/av/mic';
 import {red700} from 'material-ui/styles/colors';
+import Subheader from 'material-ui/Subheader';
+import Slider from 'material-ui/Slider';
+import Carousel from "../Carousel";
 
 export default class UserIndex extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.onStop=this.onStop.bind(this);
+        this.onStop = this.onStop.bind(this);
     }
-    onStop(blob){
+
+    onStop(blob) {
         console.log(blob);
     }
+
     render() {
         return (
             <div>
                 <div className="row">
-                    <div className="col-sm-8 col-12">
-                        <BubbleChart width={750} height={600} anger={20.3}
-                        fear={ 70.5}
-                        joy={10.3}
-                        sadness={80.5}
-                        analytical={ 60.5}
-                        confident= {90.14}
-                        tentative={55.7}/>
+                    <div className="col-sm-7 col-12">
+                        <MuiThemeProvider>
+                            <Subheader>Historical results</Subheader>
+                        </MuiThemeProvider>
+                        <Carousel/>
+                    </div>
+                    <div className="col-sm-1 col-1">
+                        <MuiThemeProvider>
+                            <Slider style={{height: 600}} axis="y"/>
+                        </MuiThemeProvider>
                     </div>
                     <div className="col-sm-4 col-6">
                         <MuiThemeProvider>
@@ -55,6 +62,18 @@ export default class UserIndex extends Component {
 
                             </div>
                         </div>
+                        <br/>
+                        <br/>
+                        <MuiThemeProvider>
+                            <Subheader>Today's results</Subheader>
+                        </MuiThemeProvider>
+                        <BubbleChart width={350} height={400} anger={20.3}
+                                     fear={70.5}
+                                     joy={10.3}
+                                     sadness={80.5}
+                                     analytical={6.5}
+                                     confident={9.14}
+                                     tentative={55.7}/>
                     </div>
                 </div>
             </div>
