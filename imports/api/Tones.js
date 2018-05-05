@@ -27,4 +27,5 @@ Meteor.methods({
         console.log(tone);
         Tones.insert(tone);
         console.log(Tones.find({}).fetch());
-    };
+    }
+});
