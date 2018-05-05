@@ -9,17 +9,36 @@ import {red700} from 'material-ui/styles/colors';
 import Subheader from 'material-ui/Subheader';
 import Slider from 'material-ui/Slider';
 import Carousel from "../Carousel";
+import {Meteor} from "meteor/meteor";
+
 
 export default class UserIndex extends Component {
     constructor(props) {
         super(props);
+        this.state={
+            text:""
+        };
         this.onStop = this.onStop.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
     }
 
     onStop(blob) {
         console.log(blob);
     }
+    onSubmit(){
+        Meteor.call("tones.new", this.state.text,Meteor.user()._id ,(err, val)=>{
+            if (err) throw err;
+        })
 
+    }
+    onChange(e){
+        this.setState({text: e.target.value});
+    }
+    componentWillUpdate(){
+        console.log(this.props.tones);
+    }
     render() {
         return (
             <div>
@@ -38,6 +57,7 @@ export default class UserIndex extends Component {
                     <div className="col-sm-4 col-6">
                         <MuiThemeProvider>
                             <TextField
+                                onChange={this.onChange}
                                 hintText="Cuéntanos sobre tu día en un párrafo corto."
                                 multiLine={true}
                                 rows={2}
@@ -48,6 +68,7 @@ export default class UserIndex extends Component {
                             <div className="col-6">
                                 <MuiThemeProvider>
                                     <FlatButton
+                                        onClick={this.onSubmit}
                                         primary={true}
                                         label="Enviar"
                                     />

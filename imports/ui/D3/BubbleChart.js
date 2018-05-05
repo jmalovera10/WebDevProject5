@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import * as d3 from "d3";
 import {Meteor} from 'meteor/meteor';
 
-import {Tones} from "../../api/Tones.js";
 
 // App component - represents the whole app
 
@@ -112,7 +111,7 @@ export default class BubbleChart extends Component {
 
 
         node.append("text").transition(t)
-            .text(function(d) { return d.children ? "" : d.name; });
+            .text(function(d) { return (d.children || d.value===0) ? "" : d.name; });
 
 
 
