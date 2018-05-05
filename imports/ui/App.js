@@ -3,6 +3,7 @@ import {Meteor} from 'meteor/meteor';
 import {withTracker} from "meteor/react-meteor-data";
 import Index from "./index/Index.js";
 import NavbarUser from "./navbar/NavbarUser.js";
+import AuthNavbar from "./navbar/AuthNavbar.js";
 import UserIndex from "./index/UserIndex.js";
 import AuthManager from "./authentication/AuthManager.js";
 
@@ -55,7 +56,7 @@ class App extends Component {
                 {
                     this.props.currentUser ?
                         <NavbarUser onLogoutCallback={this.handleLogoutSubmit}/>
-                        : null
+                        : this.state.location !== "index"?<AuthNavbar goToIndex={this.goToIndex}/>:null
                 }
                 {
                     this.props.currentUser ?

@@ -2,15 +2,21 @@
 Index styles
  ------------*/
 
-
 @media screen and (min-width: 1200px) {
     .main {
         height: 100%;
     }
 
     .main-interactions {
+        height: 100%;
         padding-left: 10%;
         padding-right: 10%;
+        background-color: #5710AD;
+        color: #FFEB03;
+    }
+
+    .interactions-content {
+        margin-top: 50%;
     }
 
     .main-visualization {
@@ -18,8 +24,8 @@ Index styles
         height: 100%;
     }
 
-    .img-logo{
-        margin-top: 35%;
+    .img-logo {
+        margin-top: 40%;
     }
 
     .center-items {
@@ -62,10 +68,15 @@ Index styles
     }
 
     .main-interactions {
+        height: 100%;
+        padding-left: 10%;
+        padding-right: 10%;
+        background-color: #5710AD;
+        color: #FFEB03;
+    }
+
+    .interactions-content {
         margin-top: 50%;
-        margin-bottom: 50%;
-        padding-left: 8%;
-        padding-right: 8%;
     }
 
     .main-visualization {
@@ -73,7 +84,7 @@ Index styles
         height: 100%;
     }
 
-    .img-logo{
+    .img-logo {
         margin-top: 45%;
     }
 
@@ -118,10 +129,15 @@ Index styles
     }
 
     .main-interactions {
+        height: 100%;
+        padding-left: 10%;
+        padding-right: 10%;
+        background-color: #5710AD;
+        color: #FFEB03;
+    }
+
+    .interactions-content {
         margin-top: 50%;
-        margin-bottom: 50%;
-        padding-left: 5%;
-        padding-right: 5%;
     }
 
     .main-visualization {
@@ -129,8 +145,8 @@ Index styles
         height: 100%;
     }
 
-    .img-logo{
-        margin-top: 50%;
+    .img-logo {
+        margin-top: 60%;
     }
 
     .center-items {
@@ -181,7 +197,7 @@ Index styles
 
     }
 
-    .img-logo{
+    .img-logo {
         margin-top: 35%;
     }
 
@@ -229,7 +245,7 @@ Index styles
 
     }
 
-    .img-logo{
+    .img-logo {
         margin-top: 35%;
     }
 
