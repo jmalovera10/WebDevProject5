@@ -7,7 +7,6 @@ Meteor.methods({
 
     'tones.new'(text, userId) {
         check(text,String);
-        console.log(text);
         global.Buffer = global.Buffer|| require('buffer').Buffer;
 
         let ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
@@ -27,7 +26,6 @@ Meteor.methods({
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(tone.document_tone.tones);
                     Meteor.call("tones.insert", {
                         userId:userId,
                         created_at:new Date(),

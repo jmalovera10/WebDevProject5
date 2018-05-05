@@ -21,7 +21,7 @@ export default class AuthManager extends Component{
             pswdMatch: false,
             emailError: false,
             usernameError: false,
-        }
+        };
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePswdChange = this.handlePswdChange.bind(this);
