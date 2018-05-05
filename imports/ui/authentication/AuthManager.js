@@ -117,7 +117,7 @@ export default class AuthManager extends Component{
 
     render() {
         return (
-            <div className="row justify-content-around">
+            <div className="row justify-content-around auth-content">
                 {
                     this.state.processingAuth ?
                         <div className="center-items">

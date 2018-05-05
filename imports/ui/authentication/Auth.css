@@ -9,6 +9,10 @@ Auth modules styles
 
 }
 
+.auth-content{
+    background-color: #5710AD;
+}
+
 .auth-card-login {
     background: #149CDB ;
     color: #304057;
