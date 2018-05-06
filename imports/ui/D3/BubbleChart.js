@@ -118,7 +118,7 @@ export default class BubbleChart extends Component {
 
     }
     componentWillUpdate(){
-      
+
 
         let sum= this.props.anger+this.props.confident+this.props.analytical+this.props.fear+this.props.joy+this.props.sadness+this.props.tentative;
         this.data = {

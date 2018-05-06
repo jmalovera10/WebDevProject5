@@ -24,6 +24,13 @@ export default class UserIndex extends Component {
 
     }
     componentDidMount(){
+        this.analytical=0;
+        this.anger=0;
+        this.confident=0;
+        this.fear=0;
+        this.joy=0;
+        this.sadness=0;
+        this.tentative=0;
         if(this.props.tones && this.props.tones.length>0) {
             this.lastTones = this.props.tones[this.props.tones.length - 1].tone;
         }
@@ -70,6 +77,13 @@ export default class UserIndex extends Component {
         this.setState({text: e.target.value});
     }
     componentWillUpdate(){
+        this.analytical=0;
+        this.anger=0;
+        this.confident=0;
+        this.fear=0;
+        this.joy=0;
+        this.sadness=0;
+        this.tentative=0;
         console.log(this.props.tones);
         if(this.props.tones && this.props.tones.length>0) {
             this.lastTones = this.props.tones[this.props.tones.length - 1].tone;
@@ -155,13 +169,13 @@ export default class UserIndex extends Component {
                         </MuiThemeProvider>
 
                         <BubbleChart width={350} height={400}
-                                     anger={this.anger?this.anger:0}
-                                     fear={this.fear?this.fear:0}
-                                     joy={this.joy?this.joy:0}
-                                     sadness={this.sadness?this.sadness:0}
-                                     analytical={this.analytical?this.analytical:0}
-                                     confident={this.confident?this.confident:0}
-                                     tentative={this.tentative?this.tentative:0 }/>
+                                     anger={this.anger}
+                                     fear={this.fear}
+                                     joy={this.joy}
+                                     sadness={this.sadness}
+                                     analytical={this.analytical}
+                                     confident={this.confident}
+                                     tentative={this.tentative}/>
                     </div>
                 </div>
             </div>
