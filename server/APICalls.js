@@ -26,11 +26,6 @@ Meteor.methods({
                 if (err) {
                     console.log(err);
                 } else {
-                    Meteor.call("tones.insert", {
-                        userId:userId,
-                        created_at:new Date(),
-                        tone:tone.document_tone.tones
-                    });
                     Tones.insert({
                         userId:userId,
                         created_at:new Date(),

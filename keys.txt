@@ -3,5 +3,5 @@
 
             cross-env
             SET IBM_USERNAME=9cf32683-7918-4fbf-98be-abc47b0fbebe
-                SET IBM_PASSWORD=yxNXAor1HwBd
+            SET IBM_PASSWORD=yxNXAor1HwBd
             meteor
