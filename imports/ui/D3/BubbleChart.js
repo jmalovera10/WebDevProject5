@@ -118,8 +118,7 @@ export default class BubbleChart extends Component {
 
     }
     componentWillUpdate(){
-        console.log("Will update");
-
+      
 
         let sum= this.props.anger+this.props.confident+this.props.analytical+this.props.fear+this.props.joy+this.props.sadness+this.props.tentative;
         this.data = {
@@ -203,7 +202,7 @@ export default class BubbleChart extends Component {
             .attr("stroke-width", 2);
 
         nodeEnter.append("text").transition(t)
-            .text(function(d) { return d.children ? "" : d.name; });
+            .text(function(d) { return (d.children || d.value===0)? "" : d.name; });
 
 
 
