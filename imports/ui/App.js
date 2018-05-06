@@ -67,9 +67,8 @@ class App extends Component {
 }
 
 export default withTracker(() => {
-    console.log(Meteor.user());
     if(Meteor.user()) {
-        Meteor.subscribe("Tones", Meteor.user()._id);
+        Meteor.subscribe('tones');
         let all = Tones.find().fetch();
         console.log(all);
 

@@ -12,15 +12,22 @@ import "./NavbarUser.css";
 
 export default class NavbarUser extends Component {
     render() {
+        background = {
+            backgroundColor: "#FFEB03"
+        };
+        titleLayout = {
+            textAlign: "center"
+        };
         return (
             <div className="navbar-user">
                 <MuiThemeProvider>
                     <AppBar
-                        title="Emotioner"
+                        title={<img src="MinEmotionerLogo.PNG" alt="emotioner_min_logo"
+                                    className="col-4 col-md-1 appbar-logo" onClick={this.props.goToIndex}/>}
                         iconElementLeft={
                             <IconMenu
                                 iconButtonElement={<IconButton aria-label="Button that expands the menu"
-                                ><Menu color={"#1498D5"}/></IconButton>}
+                                ><Menu color={"#5710AD"}/></IconButton>}
                                 anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                                 targetOrigin={{horizontal: 'left', vertical: 'top'}}
 
@@ -29,6 +36,8 @@ export default class NavbarUser extends Component {
                                           onClick={this.props.onLogoutCallback}/>
                             </IconMenu>
                         }
+                        titleStyle={titleLayout}
+                        style={background}
                     />
                 </MuiThemeProvider>
             </div>
