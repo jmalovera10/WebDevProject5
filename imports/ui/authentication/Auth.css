@@ -10,14 +10,13 @@ Auth modules styles
 }
 
 .auth-content{
-    background-color: #5710AD;
+
 }
 
 .auth-card-login {
-    background: #149CDB ;
-    color: #304057;
-    margin-top: 40%;
-    margin-bottom: 40%;
+    background: #5710AD ;
+    color: #fafafa;
+    margin-top: 30%;
     padding-left: 10%;
     padding-right: 10%;
 }
@@ -32,7 +31,7 @@ Auth modules styles
 }
 
 .auth-card-title {
-    color: #FAFAFA;
+    color: #FFEB03;
     font-family: "Nova Slim", sans-serif;
     padding-top: 3%;
 }
@@ -44,8 +43,8 @@ Auth modules styles
 }
 
 .auth-button {
-    background: #FF8E0B;
-    color: #FAFAFA;
+    background: #FFEB03;
+    color: #5710AD;
     font-family: "Nova Slim", sans-serif;
     margin-bottom: 5%;
 }

@@ -1,13 +1,13 @@
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
-import {Tones} from "/imports/api/Tones.js"
+import {Tones} from "/imports/api/Tones.js";
 
 
 Meteor.methods({
 
     'tones.new'(text, userId) {
-        check(text,String);
-        global.Buffer = global.Buffer|| require('buffer').Buffer;
+        check(text, String);
+        global.Buffer = global.Buffer || require('buffer').Buffer;
 
         let ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
@@ -22,28 +22,39 @@ Meteor.methods({
                 tone_input: text,
                 content_type: 'text/plain'
             },
-            Meteor.bindEnvironment(function(err, tone) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    Meteor.call("tones.insert", {
-                        userId:userId,
-                        created_at:new Date(),
-                        tone:tone.document_tone.tones
-                    });
-                    Tones.insert({
-                        userId:userId,
-                        created_at:new Date(),
-                        tone:tone.document_tone.tones
-                    });
+            Meteor.bindEnvironment(function (err, tone) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        Meteor.call("tones.insert", {
+                            userId: userId,
+                            created_at: new Date(),
+                            tone: tone.document_tone.tones
+                        });
+                        Tones.insert({
+                            userId: userId,
+                            created_at: new Date(),
+                            tone: tone.document_tone.tones
+                        });
 
+                    }
                 }
-            }
             )
-
         );
 
-
     },
+    'tones.translate'(text,userId){
+        check(text,String);
+
+        const translate = require('google-translate-api');
+        translate(text,{to: 'en'}).then(res=>{
+            console.log(res.text);
+            Meteor.call('tones.new',res.text,userId,(err, val)=>{
+                if (err) console.log(err);
+            });
+        }).catch(err=>{
+            console.error(err);
+        });
+    }
 
 });

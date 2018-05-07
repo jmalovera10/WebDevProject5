@@ -2,6 +2,16 @@
 Index styles
  ------------*/
 
+.btn-signup{
+    background-color: #5710AD;
+    color: #FFEB03;
+}
+
+.btn-login{
+    background-color: #5710AD;
+    color: #FFEB03;
+}
+
 @media screen and (min-width: 1200px) {
     .main {
         height: 100%;
@@ -11,8 +21,7 @@ Index styles
         height: 100%;
         padding-left: 10%;
         padding-right: 10%;
-        background-color: #5710AD;
-        color: #FFEB03;
+        color: #5710AD;
     }
 
     .interactions-content {
@@ -71,8 +80,7 @@ Index styles
         height: 100%;
         padding-left: 10%;
         padding-right: 10%;
-        background-color: #5710AD;
-        color: #FFEB03;
+        color: #5710AD;
     }
 
     .interactions-content {
@@ -132,8 +140,7 @@ Index styles
         height: 100%;
         padding-left: 10%;
         padding-right: 10%;
-        background-color: #5710AD;
-        color: #FFEB03;
+        color: #5710AD;
     }
 
     .interactions-content {

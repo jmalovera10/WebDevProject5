@@ -28,9 +28,9 @@ export default class UserIndex extends Component {
         console.log(blob);
     }
     onSubmit(){
-        Meteor.call("tones.new", this.state.text,Meteor.user()._id ,(err, val)=>{
+        Meteor.call("tones.translate", this.state.text,Meteor.user()._id ,(err, val)=>{
             if (err) throw err;
-        })
+        });
 
     }
     onChange(e){

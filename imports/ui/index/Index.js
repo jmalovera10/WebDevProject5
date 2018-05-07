@@ -21,12 +21,12 @@ export default class Index extends Component {
                             </h3>
                         </div>
                         <div className="col-md-12 sign-up-button-container">
-                            <button className="btn sign-up-button col-md-12" onClick={this.props.goToSignUp}>
+                            <button className="btn sign-up-button col-md-12 btn-signup" onClick={this.props.goToSignUp}>
                                 Sign Up
                             </button>
                         </div>
                         <div className="col-md-12 login-button-container">
-                            <button className="btn login-button col-md-12" onClick={this.props.goToLogin}>
+                            <button className="btn login-button col-md-12 btn-login" onClick={this.props.goToLogin}>
                                 Login
                             </button>
                         </div>
