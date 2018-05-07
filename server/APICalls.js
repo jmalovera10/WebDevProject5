@@ -23,36 +23,29 @@ Meteor.methods({
                 content_type: 'text/plain'
             },
             Meteor.bindEnvironment(function (err, tone) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        Meteor.call("tones.insert", {
-                            userId: userId,
-                            created_at: new Date(),
-                            tone: tone.document_tone.tones
-                        });
-                        Tones.insert({
-                            userId: userId,
-                            created_at: new Date(),
-                            tone: tone.document_tone.tones
-                        });
-
-                    }
+                if (err) {
+                    console.log(err);
+                } else {
+                    Tones.insert({
+                        userId: userId,
+                        created_at: new Date(),
+                        tone: tone.document_tone.tones
+                    });
                 }
-            )
+            })
         );
 
     },
-    'tones.translate'(text,userId){
-        check(text,String);
+    'tones.translate'(text, userId) {
+        check(text, String);
 
         const translate = require('google-translate-api');
-        translate(text,{to: 'en'}).then(res=>{
+        translate(text, {to: 'en'}).then(res => {
             console.log(res.text);
-            Meteor.call('tones.new',res.text,userId,(err, val)=>{
+            Meteor.call('tones.new', res.text, userId, (err, val) => {
                 if (err) console.log(err);
             });
-        }).catch(err=>{
+        }).catch(err => {
             console.error(err);
         });
     }

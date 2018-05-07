@@ -22,6 +22,84 @@ export default class Carousel extends Component {
         }
     }
 
+    componentDidMount(){
+        this.totalanalytical=0;
+        this.totalanger=0;
+        this.totalconfident=0;
+        this.totalfear=0;
+        this.totaljoy=0;
+        this.totalsadness=0;
+        this.totaltentative=0;
+        if(this.props.tones && this.props.tones.length>0) {
+            this.props.tones.forEach((tones)=>{
+                tones.tone.forEach((t) => {
+                    switch (t.tone_id) {
+                        case "anger":
+                            this.totalanger += t.score;
+                            break;
+                        case "joy":
+                            this.totaljoy += t.score;
+                            break;
+                        case "confident":
+                            this.totalconfident += t.score;
+                            break;
+                        case "analytical":
+                            this.totalanalytical += t.score;
+                            break;
+                        case "tentative":
+                            this.totaltentative += t.score;
+                            break;
+                        case "fear":
+                            this.totalfear += t.score;
+                            break;
+                        default:
+                            this.totalsadness += t.score;
+                            break;
+
+                    }
+                })
+            })
+        }
+    }
+    componentWillUpdate(){
+        this.totalanalytical=0;
+        this.totalanger=0;
+        this.totalconfident=0;
+        this.totalfear=0;
+        this.totaljoy=0;
+        this.totalsadness=0;
+        this.totaltentative=0;
+        if(this.props.tones && this.props.tones.length>0) {
+            this.props.tones.forEach((tones)=>{
+                tones.tone.forEach((t) => {
+                    switch (t.tone_id) {
+                        case "anger":
+                            this.totalanger += t.score;
+                            break;
+                        case "joy":
+                            this.totaljoy += t.score;
+                            break;
+                        case "confident":
+                            this.totalconfident += t.score;
+                            break;
+                        case "analytical":
+                            this.totalanalytical += t.score;
+                            break;
+                        case "tentative":
+                            this.totaltentative += t.score;
+                            break;
+                        case "fear":
+                            this.totalfear += t.score;
+                            break;
+                        default:
+                            this.totalsadness += t.score;
+                            break;
+
+                    }
+                })
+            })
+        }
+    }
 
     render() {
 
@@ -37,13 +115,14 @@ export default class Carousel extends Component {
 
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <BubbleChart width={750} height={600} anger={20.3}
-                                         fear={70.5}
-                                         joy={10.3}
-                                         sadness={80.5}
-                                         analytical={60.5}
-                                         confident={90.14}
-                                         tentative={55.7}/>
+                            <BubbleChart width={750} height={600}
+                                         anger={this.totalanger}
+                                         fear={this.totalfear}
+                                         joy={this.totaljoy}
+                                         sadness={this.totalsadness}
+                                         analytical={this.totalanalytical}
+                                         confident={this.totalconfident}
+                                         tentative={this.totaltentative}/>
                         </div>
                         <div className="carousel-item">
                         <StatsChart width={700} height={550} data={this.state.data}/>

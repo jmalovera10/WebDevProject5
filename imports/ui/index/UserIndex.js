@@ -23,7 +23,47 @@ export default class UserIndex extends Component {
         this.onSubmit = this.onSubmit.bind(this);
 
     }
+    componentDidMount(){
+        this.analytical=0;
+        this.anger=0;
+        this.confident=0;
+        this.fear=0;
+        this.joy=0;
+        this.sadness=0;
+        this.tentative=0;
+        if(this.props.tones && this.props.tones.length>0) {
+            this.lastTones = this.props.tones[this.props.tones.length - 1].tone;
+        }
+        if (this.lastTones){
+        this.lastTones.forEach((t)=>{
+            switch (t.tone_id) {
+                case "anger":
+                    this.anger=t.score;
+                    break;
+                case "joy":
+                    this.joy=t.score;
+                    break;
+                case "confident":
+                    this.confident=t.score;
+                    break;
+                case "analytical":
+                    this.analytical=t.score;
+                    break;
+                case "tentative":
+                    this.tentative=t.score;
+                    break;
+                case "fear":
+                    this.fear=t.score;
+                    break;
+                default:
+                    this.sadness=t.score;
+                    break;
 
+            }
+        })
+        }
+
+    }
     onStop(blob) {
         console.log(blob);
     }
@@ -37,7 +77,46 @@ export default class UserIndex extends Component {
         this.setState({text: e.target.value});
     }
     componentWillUpdate(){
+        this.analytical=0;
+        this.anger=0;
+        this.confident=0;
+        this.fear=0;
+        this.joy=0;
+        this.sadness=0;
+        this.tentative=0;
         console.log(this.props.tones);
+        if(this.props.tones && this.props.tones.length>0) {
+            this.lastTones = this.props.tones[this.props.tones.length - 1].tone;
+        }
+        if(this.lastTones) {
+            this.lastTones.forEach((t) => {
+                switch (t.tone_id) {
+                    case "anger":
+                        this.anger = t.score;
+                        break;
+                    case "joy":
+                        this.joy = t.score;
+                        break;
+                    case "confident":
+                        this.confident = t.score;
+                        break;
+                    case "analytical":
+                        this.analytical = t.score;
+                        break;
+                    case "tentative":
+                        this.tentative = t.score;
+                        break;
+                    case "fear":
+                        this.fear = t.score;
+                        break;
+                    default:
+                        this.sadness = t.score;
+                        break;
+
+                }
+            })
+        }
+
     }
     render() {
         return (
@@ -47,7 +126,7 @@ export default class UserIndex extends Component {
                         <MuiThemeProvider>
                             <Subheader>Historical results</Subheader>
                         </MuiThemeProvider>
-                        <Carousel/>
+                        <Carousel tones={this.props.tones}/>
                     </div>
                     <div className="col-sm-1 col-1">
                         <MuiThemeProvider>
@@ -88,14 +167,15 @@ export default class UserIndex extends Component {
                         <MuiThemeProvider>
                             <Subheader>Today's results</Subheader>
                         </MuiThemeProvider>
+
                         <BubbleChart width={350} height={400}
-                                     anger={1}
-                                     fear={1}
-                                     joy={1}
-                                     sadness={1}
-                                     analytical={1}
-                                     confident={1}
-                                     tentative={1}/>
+                                     anger={this.anger}
+                                     fear={this.fear}
+                                     joy={this.joy}
+                                     sadness={this.sadness}
+                                     analytical={this.analytical}
+                                     confident={this.confident}
+                                     tentative={this.tentative}/>
                     </div>
                 </div>
             </div>
