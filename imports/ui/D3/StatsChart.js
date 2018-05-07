@@ -14,13 +14,13 @@ export default class StatsChart extends Component{
                     <Tooltip/>
                     <br/>
                     <Legend />
-                    <Line type="monotone" dataKey="joy" stroke="rgb(221, 144, 37)" activeDot={{r: 8}}/>
-                    <Line type="monotone" dataKey="sadness" stroke="blue" activeDot={{r: 8}}/>
-                    <Line type="monotone" dataKey="fear" stroke="black" activeDot={{r: 8}}/>
-                    <Line type="monotone" dataKey="confident" stroke="green" activeDot={{r: 8}}/>
-                    <Line type="monotone" dataKey="analytical" stroke="magenta" activeDot={{r: 8}}/>
-                    <Line type="monotone" dataKey="anger" stroke="red" activeDot={{r: 8}}/>
-                    <Line type="monotone" dataKey="tentative" stroke="orange" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="alegría" stroke="rgb(221, 144, 37)" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="tristeza" stroke="blue" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="miedo" stroke="black" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="confianza" stroke="green" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="analítica" stroke="magenta" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="ira" stroke="red" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="tentatividad" stroke="orange" activeDot={{r: 8}}/>
                 </LineChart>
             </div>
         );
