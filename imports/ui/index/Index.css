@@ -3,13 +3,13 @@ Index styles
  ------------*/
 
 .btn-signup{
-    background-color: #5710AD;
-    color: #FFEB03;
+    background-color: rgb(79, 111, 183);
+    color: #FFD31E;
 }
 
 .btn-login{
-    background-color: #5710AD;
-    color: #FFEB03;
+    background-color: rgb(79, 111, 183);
+    color: #FFD31E;
 }
 
 @media screen and (min-width: 1200px) {
@@ -21,7 +21,7 @@ Index styles
         height: 100%;
         padding-left: 10%;
         padding-right: 10%;
-        color: #5710AD;
+        color: rgb(79, 111, 183);
     }
 
     .interactions-content {
@@ -29,7 +29,7 @@ Index styles
     }
 
     .main-visualization {
-        background-color: #FFEB03;
+        background-color: #FFD31E;
         height: 100%;
     }
 
@@ -80,7 +80,7 @@ Index styles
         height: 100%;
         padding-left: 10%;
         padding-right: 10%;
-        color: #5710AD;
+        color: rgb(79, 111, 183);
     }
 
     .interactions-content {
@@ -88,7 +88,7 @@ Index styles
     }
 
     .main-visualization {
-        background-color: #FFEB03;
+        background-color: #FFD31E;
         height: 100%;
     }
 
@@ -140,7 +140,7 @@ Index styles
         height: 100%;
         padding-left: 10%;
         padding-right: 10%;
-        color: #5710AD;
+        color: rgb(79, 111, 183);
     }
 
     .interactions-content {
@@ -148,7 +148,7 @@ Index styles
     }
 
     .main-visualization {
-        background-color: #FFEB03;
+        background-color: #FFD31E;
         height: 100%;
     }
 

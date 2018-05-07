@@ -13,7 +13,7 @@ import "./NavbarUser.css";
 export default class NavbarUser extends Component {
     render() {
         background = {
-            backgroundColor: "#FFEB03"
+            backgroundColor: "#FFD31E"
         };
         titleLayout = {
             textAlign: "center"
@@ -27,7 +27,7 @@ export default class NavbarUser extends Component {
                         iconElementLeft={
                             <IconMenu
                                 iconButtonElement={<IconButton aria-label="Button that expands the menu"
-                                ><Menu color={"#5710AD"}/></IconButton>}
+                                ><Menu color={"rgb(79, 111, 183)"}/></IconButton>}
                                 anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                                 targetOrigin={{horizontal: 'left', vertical: 'top'}}
 

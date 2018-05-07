@@ -13,7 +13,7 @@ import "./AuthNavbar.css";
 export default class AuthNavbar extends Component {
     render(){
         background = {
-            backgroundColor: "#FFEB03"
+            backgroundColor: "#FFD31E"
         };
         titleLayout = {
             textAlign: "center"
