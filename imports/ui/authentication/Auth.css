@@ -14,7 +14,7 @@ Auth modules styles
 }
 
 .auth-card-login {
-    background: #5710AD ;
+    background: rgb(79, 111, 183) ;
     color: #fafafa;
     margin-top: 30%;
     padding-left: 10%;
@@ -31,7 +31,7 @@ Auth modules styles
 }
 
 .auth-card-title {
-    color: #FFEB03;
+    color: #FFD31E;
     font-family: "Nova Slim", sans-serif;
     padding-top: 3%;
 }
@@ -43,8 +43,8 @@ Auth modules styles
 }
 
 .auth-button {
-    background: #FFEB03;
-    color: #5710AD;
+    background: #FFD31E;
+    color: rgb(79, 111, 183);
     font-family: "Nova Slim", sans-serif;
     margin-bottom: 5%;
 }
