@@ -6,16 +6,19 @@ import NavbarUser from "./navbar/NavbarUser.js";
 import AuthNavbar from "./navbar/AuthNavbar.js";
 import UserIndex from "./index/UserIndex.js";
 import AuthManager from "./authentication/AuthManager.js";
+import RecommendationDialog from "./dialogs/RecommendationDialog.js";
 import {Tones} from "/imports/api/Tones.js"
 
 import "./App.css";
+import Recommendations from "./recommendations/Recommendations";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             location: "index",
-            userLocation: "index"
+            userLocation: "index",
+            openRecommendationsDialog: false
         };
 
         this.goToIndex = this.goToIndex.bind(this);
@@ -41,8 +44,20 @@ class App extends Component {
         this.setState({location: "Login"});
     }
 
+    goToRecommendations() {
+        this.setState({userLocation: "recommendations", openRecommendationsDialog: false});
+    }
+
     handleLogoutSubmit() {
         Meteor.logout();
+    }
+
+    openRecommendationsDialog() {
+        this.setState({openRecommendationsDialog: true});
+    }
+
+    handleRecommendationsDialogClose() {
+        this.setState({openRecommendationsDialog: false});
     }
 
     render() {
@@ -50,24 +65,30 @@ class App extends Component {
             <div className="app-content">
                 {
                     this.props.currentUser ?
-                        <NavbarUser onLogoutCallback={this.handleLogoutSubmit}/>
-                        : this.state.location !== "index"?<AuthNavbar goToIndex={this.goToIndex}/>:null
+                        <NavbarUser onLogoutCallback={this.handleLogoutSubmit} goToIndex={this.goToIndexUser}/>
+                        : this.state.location !== "index" ? <AuthNavbar goToIndex={this.goToIndex}/> : null
                 }
                 {
                     this.props.currentUser ?
-                        <UserIndex tones={this.props.tones}/>
-                        : this.state.location === "index" ?
+                        (this.state.userLocation === "index" ?
+                            <UserIndex tones={this.props.tones}
+                                       openRecommendationsDialog={this.openRecommendationsDialog.bind(this)}/>
+                            : <Recommendations/>)
+                        : (this.state.location === "index" ?
                         <Index goToLogin={this.goToLogin} goToSignUp={this.goToSignUp}/> :
-                        <AuthManager isLogin={this.state.location === "Login"} typeAuth={this.state.location}/>
+                        <AuthManager isLogin={this.state.location === "Login"} typeAuth={this.state.location}/>)
                 }
-
+                <RecommendationDialog open={this.state.openRecommendationsDialog}
+                                      username={this.props.currentUser ? this.props.currentUser.username : "null"}
+                                      handleClose={this.handleRecommendationsDialogClose.bind(this)}
+                                      goToRecommendations={this.goToRecommendations.bind(this)}/>
             </div>
         );
     }
 }
 
 export default withTracker(() => {
-    if(Meteor.user()) {
+    if (Meteor.user()) {
         Meteor.subscribe('tones');
         let all = Tones.find().fetch();
         console.log(all);
@@ -77,5 +98,5 @@ export default withTracker(() => {
             tones: all,
         }
     }
-   return {};
+    return {};
 })(App);

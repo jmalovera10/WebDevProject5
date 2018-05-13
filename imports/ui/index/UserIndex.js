@@ -16,88 +16,93 @@ import {Meteor} from "meteor/meteor";
 export default class UserIndex extends Component {
     constructor(props) {
         super(props);
-        this.state={
-            text:"",
-            loading:false
+        this.state = {
+            text: "",
+            loading: false
         };
         this.onStop = this.onStop.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
     }
-    componentDidMount(){
-        this.analytical=0;
-        this.anger=0;
-        this.confident=0;
-        this.fear=0;
-        this.joy=0;
-        this.sadness=0;
-        this.tentative=0;
-        if(this.props.tones && this.props.tones.length>0) {
+
+    componentDidMount() {
+        this.analytical = 0;
+        this.anger = 0;
+        this.confident = 0;
+        this.fear = 0;
+        this.joy = 0;
+        this.sadness = 0;
+        this.tentative = 0;
+        if (this.props.tones && this.props.tones.length > 0) {
             this.lastTones = this.props.tones[this.props.tones.length - 1].tone;
         }
-        if (this.lastTones){
-        this.lastTones.forEach((t)=>{
-            switch (t.tone_id) {
-                case "anger":
-                    this.anger=t.score;
-                    break;
-                case "joy":
-                    this.joy=t.score;
-                    break;
-                case "confident":
-                    this.confident=t.score;
-                    break;
-                case "analytical":
-                    this.analytical=t.score;
-                    break;
-                case "tentative":
-                    this.tentative=t.score;
-                    break;
-                case "fear":
-                    this.fear=t.score;
-                    break;
-                default:
-                    this.sadness=t.score;
-                    break;
+        if (this.lastTones) {
+            this.lastTones.forEach((t) => {
+                switch (t.tone_id) {
+                    case "anger":
+                        this.anger = t.score;
+                        break;
+                    case "joy":
+                        this.joy = t.score;
+                        break;
+                    case "confident":
+                        this.confident = t.score;
+                        break;
+                    case "analytical":
+                        this.analytical = t.score;
+                        break;
+                    case "tentative":
+                        this.tentative = t.score;
+                        break;
+                    case "fear":
+                        this.fear = t.score;
+                        break;
+                    default:
+                        this.sadness = t.score;
+                        break;
 
-            }
-        })
+                }
+            })
         }
 
     }
+
     onStop(blob) {
         console.log(blob);
     }
-    onSubmit(){
-        this.setState({loading:true},
-        Meteor.call("tones.translate", this.state.text,Meteor.user()._id ,(err, val)=>{
-            if (err) throw err;
 
-        })
+    onSubmit() {
+        this.setState({loading: true},
+            Meteor.call("tones.translate", this.state.text, Meteor.user()._id, (err, val) => {
+                if (err) throw err;
+                this.props.openRecommendationsDialog();
+            })
         );
 
     }
-    onChange(e){
+
+    onChange(e) {
         this.setState({text: e.target.value});
     }
-    componentWillReceiveProps(){
-        this.setState({loading:false});
+
+    componentWillReceiveProps() {
+        this.setState({loading: false});
     }
 
     render() {
-        this.analytical=0;
-        this.anger=0;
-        this.confident=0;
-        this.fear=0;
-        this.joy=0;
-        this.sadness=0;
-        this.tentative=0;
+        this.analytical = 0;
+        this.anger = 0;
+        this.confident = 0;
+        this.fear = 0;
+        this.joy = 0;
+        this.sadness = 0;
+        this.tentative = 0;
         console.log(this.props.tones);
-        if(this.props.tones && this.props.tones.length>0) {
+        if (this.props.tones && this.props.tones.length > 0) {
             this.lastTones = this.props.tones[this.props.tones.length - 1].tone;
         }
-        if(this.lastTones) {
+        if (this.lastTones) {
             this.lastTones.forEach((t) => {
                 switch (t.tone_id) {
                     case "anger":
@@ -162,7 +167,9 @@ export default class UserIndex extends Component {
                             <div className="col-6">
                                 <MuiThemeProvider>
                                     <FlatButton
-                                        ref={(FlatButton)=>{this.recordButton=FlatButton}}
+                                        ref={(FlatButton) => {
+                                            this.recordButton = FlatButton
+                                        }}
                                         icon={<RecordAction color={red700}/>}
                                     />
                                 </MuiThemeProvider>
@@ -177,11 +184,11 @@ export default class UserIndex extends Component {
                         {this.state.loading ?
                             <MuiThemeProvider>
 
-                            <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
+                                <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
                                 <h1 className="auth-text">Analizando</h1>
 
                             </MuiThemeProvider>
-                            :null
+                            : null
 
                         }
                         <BubbleChart width={350} height={400}
