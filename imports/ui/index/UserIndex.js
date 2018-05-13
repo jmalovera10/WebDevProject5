@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import "./UserIndex.css";
 import BubbleChart from "../D3/BubbleChart";
+import CircularProgress from 'material-ui/CircularProgress';
 import RecordAction from 'material-ui/svg-icons/av/mic';
 import {red700} from 'material-ui/styles/colors';
 import Subheader from 'material-ui/Subheader';
@@ -16,7 +17,8 @@ export default class UserIndex extends Component {
     constructor(props) {
         super(props);
         this.state={
-            text:""
+            text:"",
+            loading:false
         };
         this.onStop = this.onStop.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -68,15 +70,22 @@ export default class UserIndex extends Component {
         console.log(blob);
     }
     onSubmit(){
+        this.setState({loading:true},
         Meteor.call("tones.translate", this.state.text,Meteor.user()._id ,(err, val)=>{
             if (err) throw err;
-        });
+
+        })
+        );
 
     }
     onChange(e){
         this.setState({text: e.target.value});
     }
-    componentWillUpdate(){
+    componentWillReceiveProps(){
+        this.setState({loading:false});
+    }
+
+    render() {
         this.analytical=0;
         this.anger=0;
         this.confident=0;
@@ -116,9 +125,6 @@ export default class UserIndex extends Component {
                 }
             })
         }
-
-    }
-    render() {
         return (
             <div>
                 <div className="row">
@@ -156,6 +162,7 @@ export default class UserIndex extends Component {
                             <div className="col-6">
                                 <MuiThemeProvider>
                                     <FlatButton
+                                        ref={(FlatButton)=>{this.recordButton=FlatButton}}
                                         icon={<RecordAction color={red700}/>}
                                     />
                                 </MuiThemeProvider>
@@ -167,7 +174,16 @@ export default class UserIndex extends Component {
                         <MuiThemeProvider>
                             <Subheader>Today's results</Subheader>
                         </MuiThemeProvider>
+                        {this.state.loading ?
+                            <MuiThemeProvider>
 
+                            <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
+                                <h1 className="auth-text">Analizando</h1>
+
+                            </MuiThemeProvider>
+                            :null
+
+                        }
                         <BubbleChart width={350} height={400}
                                      anger={this.anger}
                                      fear={this.fear}

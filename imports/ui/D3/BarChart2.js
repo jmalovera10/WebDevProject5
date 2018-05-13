@@ -15,7 +15,7 @@ export default class BarChart2 extends Component {
             {name: 'Tristeza', aumulado: this.props.sadness},
             {name: 'Analítico', aumulado: this.props.analytical},
             {name: 'Miedo', aumulado: this.props.fear},
-            {name: 'Tentativo', aumulado: this.props.tentative},
+            {name: 'Inseguridad', aumulado: this.props.tentative},
         ];
     }
 
@@ -27,7 +27,7 @@ export default class BarChart2 extends Component {
             {name: 'Tristeza', acumulado: this.props.sadness},
             {name: 'Analítico', acumulado: this.props.analytical},
             {name: 'Miedo', acumulado: this.props.fear},
-            {name: 'Tentativo', acumulado: this.props.tentative},
+            {name: 'Inseguridad', acumulado: this.props.tentative},
             {name: 'Alegría', acumulado: this.props.joy},
         ];
 

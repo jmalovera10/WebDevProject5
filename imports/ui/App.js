@@ -16,7 +16,7 @@ class App extends Component {
         this.state = {
             location: "index",
             userLocation: "index"
-        }
+        };
 
         this.goToIndex = this.goToIndex.bind(this);
         this.goToIndexUser = this.goToIndexUser.bind(this);
@@ -77,7 +77,5 @@ export default withTracker(() => {
             tones: all,
         }
     }
-    else{
-        return{tones:[]}
-    }
+   return {};
 })(App);
