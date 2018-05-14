@@ -7,7 +7,8 @@ import AuthNavbar from "./navbar/AuthNavbar.js";
 import UserIndex from "./index/UserIndex.js";
 import AuthManager from "./authentication/AuthManager.js";
 import RecommendationDialog from "./dialogs/RecommendationDialog.js";
-import {Tones} from "/imports/api/Tones.js"
+import {Tones} from "/imports/api/Tones.js";
+import {MusicRecommendations} from "../api/musicRecommendations";
 
 import "./App.css";
 import Recommendations from "./recommendations/Recommendations";
@@ -90,12 +91,16 @@ class App extends Component {
 export default withTracker(() => {
     if (Meteor.user()) {
         Meteor.subscribe('tones');
-        let all = Tones.find().fetch();
-        console.log(all);
+        Meteor.subscribe('music_rec');
+        let tones = Tones.find().fetch();
+        let musicRec = MusicRecommendations.find().fetch();
+
+        console.log(tones);
 
         return {
             currentUser: Meteor.user(),
-            tones: all,
+            tones: tones,
+            musicRec: musicRec
         }
     }
     return {};

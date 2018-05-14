@@ -4,6 +4,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import "./RecommendationDialog.css";
+
 export default class RecommendationDialog extends Component {
     constructor(props) {
         super(props);

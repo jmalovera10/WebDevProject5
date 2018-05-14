@@ -1,6 +1,5 @@
-
 import { Meteor } from 'meteor/meteor';
-
+import "../imports/api/musicRecommendations.js";
 
 
 Meteor.startup(() => {
