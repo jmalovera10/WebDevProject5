@@ -191,12 +191,15 @@ export default class UserIndex extends Component {
                             <Subheader>Today's results</Subheader>
                         </MuiThemeProvider>
                         {this.state.loading ?
-                            <MuiThemeProvider>
+                            <div>
+                                <MuiThemeProvider>
 
-                                <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
+                                    <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
+
+
+                                </MuiThemeProvider>
                                 <h1 className="auth-text">Analizando</h1>
-
-                            </MuiThemeProvider>
+                            </div>
                             : null
 
                         }
