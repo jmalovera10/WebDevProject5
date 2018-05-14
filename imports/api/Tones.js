@@ -5,8 +5,6 @@ import {check} from 'meteor/check';
 
 export const Tones = new Mongo.Collection('Tones');
 
-
-
 if (Meteor.isServer) {
 
     // This code only runs on the server

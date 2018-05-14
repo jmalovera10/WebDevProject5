@@ -1,7 +1,9 @@
  // username: '9cf32683-7918-4fbf-98be-abc47b0fbebe',
             //password: 'yxNXAor1HwBd',
 
-            cross-env
-            SET IBM_USERNAME=9cf32683-7918-4fbf-98be-abc47b0fbebe
-            SET IBM_PASSWORD=yxNXAor1HwBd
-            meteor
+cross-env
+SET IBM_USERNAME=9cf32683-7918-4fbf-98be-abc47b0fbebe
+SET IBM_PASSWORD=yxNXAor1HwBd
+SET SPFY_CLIENT=afc9eccf3fd44af1b4bf7e1b82dfdd8f
+SET SPFY_SECR=e1c9020a3e8f4d69bdb85e15f30fa120
+meteor
