@@ -73,8 +73,9 @@ class App extends Component {
                     this.props.currentUser ?
                         (this.state.userLocation === "index" ?
                             <UserIndex tones={this.props.tones}
-                                       openRecommendationsDialog={this.openRecommendationsDialog.bind(this)}/>
-                            : <Recommendations/>)
+                                       openRecommendationsDialog={this.openRecommendationsDialog.bind(this)}
+                                       goToRecommendations={this.goToRecommendations.bind(this)}/>
+                            : <Recommendations musicRec={this.props.musicRec}/>)
                         : (this.state.location === "index" ?
                         <Index goToLogin={this.goToLogin} goToSignUp={this.goToSignUp}/> :
                         <AuthManager isLogin={this.state.location === "Login"} typeAuth={this.state.location}/>)
@@ -93,14 +94,14 @@ export default withTracker(() => {
         Meteor.subscribe('tones');
         Meteor.subscribe('music_rec');
         let tones = Tones.find().fetch();
-        let musicRec = MusicRecommendations.find().fetch();
-
-        console.log(tones);
+        let musicRec = MusicRecommendations.find().fetch().pop();
+        if(musicRec)
+            console.log(musicRec.playlists);
 
         return {
             currentUser: Meteor.user(),
             tones: tones,
-            musicRec: musicRec
+            musicRec: musicRec?musicRec.playlists:undefined
         }
     }
     return {};

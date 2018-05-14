@@ -1,6 +1,7 @@
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 import {Tones} from "/imports/api/Tones.js";
+import {MusicRecommendations} from "../imports/api/musicRecommendations";
 
 
 Meteor.methods({
@@ -31,6 +32,22 @@ Meteor.methods({
                         created_at: new Date(),
                         tone: tone.document_tone.tones
                     });
+                    let tones = tone.document_tone.tones;
+                    console.log(tones);
+                    let maxCurrentMood = null;
+                    if (tones && tones.length > 0) {
+                        let maxVal = 0;
+                        tones.forEach((t) => {
+                            if (maxVal < t.score) {
+                                maxVal = t.score;
+                                maxCurrentMood = t.tone_name;
+                            }
+                        });
+                        console.log(maxCurrentMood);
+                        if (maxCurrentMood) {
+                            Meteor.call('music.getPlaylist', maxCurrentMood, userId);
+                        }
+                    }
                 }
             })
         );
@@ -48,6 +65,36 @@ Meteor.methods({
         }).catch(err => {
             console.error(err);
         });
+    },
+
+    'music.getPlaylist'(emotion, userId) {
+        if (!this.userId) throw new Error("Not authorized");
+        check(emotion, String);
+        check(userId, String);
+        const Spotify = require('node-spotify-api');
+        let spotify = new Spotify({
+            id: process.env.SPFY_CLIENT,
+            secret: process.env.SPFY_SECR
+        });
+        spotify.search({type: 'playlist', query: emotion})
+            .then(Meteor.bindEnvironment((response) => {
+                console.log(response);
+                let fetch = MusicRecommendations.findOne({userId: userId});
+                console.log(fetch);
+                if(fetch) {
+                    let playlists = fetch.playlists;
+                    playlists.push(response);
+                    MusicRecommendations.update({userId:userId}, {$set: {playlists:playlists}});
+                }else{
+                    MusicRecommendations.insert({
+                        userId: userId,
+                        playlists: [response]
+                    });
+                }
+            }))
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
 });

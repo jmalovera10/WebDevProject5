@@ -98,7 +98,6 @@ export default class UserIndex extends Component {
         this.joy = 0;
         this.sadness = 0;
         this.tentative = 0;
-        console.log(this.props.tones);
         if (this.props.tones && this.props.tones.length > 0) {
             this.lastTones = this.props.tones[this.props.tones.length - 1].tone;
         }
@@ -176,7 +175,17 @@ export default class UserIndex extends Component {
 
                             </div>
                         </div>
-                        <br/>
+                        <div className="row justify-content-around">
+                            <div className="col-6">
+                                <MuiThemeProvider>
+                                    <FlatButton
+                                        label={"Ver Recomendaciones"}
+                                        primary={true}
+                                        onClick={this.props.goToRecommendations}
+                                    />
+                                </MuiThemeProvider>
+                            </div>
+                        </div>
                         <br/>
                         <MuiThemeProvider>
                             <Subheader>Today's results</Subheader>

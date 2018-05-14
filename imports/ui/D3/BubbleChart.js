@@ -6,38 +6,35 @@ import {Meteor} from 'meteor/meteor';
 // App component - represents the whole app
 
 export default class BubbleChart extends Component {
-    constructor(props){
-      super(props);
-
+    constructor(props) {
+        super(props);
 
 
     }
+
     componentDidMount() {
         this.chart = d3.select(this.canvas).append("svg")
             .attr("width", this.props.width).attr("height", this.props.height)
             .append("g")
             .attr("transform", "translate(50,50)");
 
-        console.log("didMount");
-
-
-
     }
-    componentDidUpdate(){
-        console.log("willUpdate");
 
-        let sum= this.props.anger+this.props.confident+this.props.analytical+this.props.fear+this.props.joy+this.props.sadness+this.props.tentative;
+    componentDidUpdate() {
+
+        let sum = this.props.anger + this.props.confident + this.props.analytical + this.props.fear + this.props.joy + this.props.sadness + this.props.tentative;
         this.data = {
             name: "emotions",
             value: 150,
             children:
-                [{name:"anger", text:"ira", cluster:0, value: this.props.anger/sum*100},
-                    {name:"fear", text:"miedo", value: this.props.fear/sum*100},
-                    {name:"joy",  text:"alegría", value: this.props.joy/sum*100},
-                    {name:"sadness", text:"tristeza", value: this.props.sadness/sum*100},
-                    {name:"analytical",  text:"analítica", value: this.props.analytical/sum*100},
-                    {name:"confident",  text:"confianza", value: this.props.confident/sum*100},
-                    {name:"tentative",  text:"inseguridad", value: this.props.tentative/sum*100}]};
+                [{name: "anger", text: "ira", cluster: 0, value: this.props.anger / sum * 100},
+                    {name: "fear", text: "miedo", value: this.props.fear / sum * 100},
+                    {name: "joy", text: "alegría", value: this.props.joy / sum * 100},
+                    {name: "sadness", text: "tristeza", value: this.props.sadness / sum * 100},
+                    {name: "analytical", text: "analítica", value: this.props.analytical / sum * 100},
+                    {name: "confident", text: "confianza", value: this.props.confident / sum * 100},
+                    {name: "tentative", text: "inseguridad", value: this.props.tentative / sum * 100}]
+        };
 
 
         this.chart.remove();
@@ -46,7 +43,7 @@ export default class BubbleChart extends Component {
             .append("g")
             .attr("transform", "translate(50,50)");
         let pack = d3.layout.pack()
-            .size([this.props.width-50, this.props.height - 50])
+            .size([this.props.width - 50, this.props.height - 50])
             .padding(10);
 
 
@@ -58,11 +55,15 @@ export default class BubbleChart extends Component {
             .data(nodes).enter()
             .append("g")
             .attr("class", "node")
-            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+            .attr("transform", function (d) {
+                return "translate(" + d.x + "," + d.y + ")";
+            });
 
         nodeEnter.append("circle")
-            .attr("r",function(d) { return d.r; })
-            .attr("fill", function(d){
+            .attr("r", function (d) {
+                return d.r;
+            })
+            .attr("fill", function (d) {
                 if (d.children) return "rgba(0,0,0,0)";
                 switch (d.name) {
                     case "anger":
@@ -85,7 +86,7 @@ export default class BubbleChart extends Component {
 
             }) //make nodes with children invisible
             .attr("opacity", 0.25)
-            .attr("stroke", function(d) {
+            .attr("stroke", function (d) {
                 if (d.children) return "";
                 switch (d.name) {
                     case "anger":
@@ -104,12 +105,13 @@ export default class BubbleChart extends Component {
                         return "#0080ff";
 
                 }
-            } ) //make nodes with children invisible
+            }) //make nodes with children invisible
             .attr("stroke-width", 2);
 
         nodeEnter.append("text").transition(t)
-            .text(function(d) { return (d.children || d.value===0)? "" : d.text; });
-
+            .text(function (d) {
+                return (d.children || d.value === 0) ? "" : d.text;
+            });
 
 
     }
@@ -119,11 +121,11 @@ export default class BubbleChart extends Component {
 
         return (
             <div>
-            <div ref={(div)=>this.canvas=div} ></div>
+                <div ref={(div) => this.canvas = div}></div>
 
             </div>
-                );
+        );
 
-                }
+    }
 
-                }
+}

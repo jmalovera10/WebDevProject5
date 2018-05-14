@@ -14,20 +14,5 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-    'music.getPlaylist'(emotion) {
-        if(!this.userId)throw new Error("Not authorized");
-        check(emotion, String);
-        const SpotifyAPI = require('node-spotify-api');
-        let webApi = new SpotifyAPI({
-            id: process.env.SPFY_CLIENT,
-            secret: process.env.SPFY_SECR
-        });
-        webApi.search({type: 'playlist', query: emotion})
-            .then((response)=> {
-                console.log(response);
-            })
-            .catch((err)=> {
-                console.log(err);
-            });
-    }
+
 });
