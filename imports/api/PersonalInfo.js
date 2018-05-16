@@ -7,7 +7,7 @@ if (Meteor.isServer) {
 
     // This code only runs on the server
     Meteor.publish('PersonalInfo', function tasksPublication() {
-        return Tones.find({userId: this.userId});
+        return PersonalInfo.find({userId: this.userId});
     });
 
 

@@ -12,6 +12,10 @@ import {MusicRecommendations} from "../api/musicRecommendations";
 
 import "./App.css";
 import Recommendations from "./recommendations/Recommendations";
+import {PersonalInfo} from "../api/PersonalInfo";
+import PersonalInfoDialog from "./dialogs/PersonalInfoDialog";
+import ModifyPersonalInfoDialog from "./dialogs/ModifyPersonalInfoDialog";
+
 
 class App extends Component {
     constructor(props) {
@@ -19,7 +23,11 @@ class App extends Component {
         this.state = {
             location: "index",
             userLocation: "index",
-            openRecommendationsDialog: false
+            personalInfo:false,
+            openRecommendationsDialog: false,
+            name: "",
+            aidName: "",
+            aidEmail: ""
         };
 
         this.goToIndex = this.goToIndex.bind(this);
@@ -27,6 +35,8 @@ class App extends Component {
         this.goToSignUp = this.goToSignUp.bind(this);
         this.goToLogin = this.goToLogin.bind(this);
         this.handleLogoutSubmit = this.handleLogoutSubmit.bind(this);
+        this.onChangeCallback = this.onChangeCallback.bind(this);
+        this.cancel = this.cancel.bind(this);
     }
 
     goToIndex() {
@@ -60,23 +70,34 @@ class App extends Component {
     handleRecommendationsDialogClose() {
         this.setState({openRecommendationsDialog: false});
     }
-    componentDidMount(){
-        Meteor.call("email.test");
+
+    componentDidMount() {
+
+    }
+    cancel(){
+        this.setState({personalInfo:false});
+    }
+    onChangeCallback(){
+        this.setState({personalInfo:true});
     }
     render() {
         return (
             <div className="app-content">
                 {
                     this.props.currentUser ?
-                        <NavbarUser onLogoutCallback={this.handleLogoutSubmit} goToIndex={this.goToIndexUser}/>
+                        <NavbarUser onLogoutCallback={this.handleLogoutSubmit} onChangeCallback={this.onChangeCallback}
+                                    goToIndex={this.goToIndexUser}/>
                         : this.state.location !== "index" ? <AuthNavbar goToIndex={this.goToIndex}/> : null
                 }
                 {
                     this.props.currentUser ?
                         (this.state.userLocation === "index" ?
-                            <UserIndex tones={this.props.tones}
-                                       openRecommendationsDialog={this.openRecommendationsDialog.bind(this)}
-                                       goToRecommendations={this.goToRecommendations.bind(this)}/>
+                            <div>
+                                <UserIndex tones={this.props.tones}
+                                           openRecommendationsDialog={this.openRecommendationsDialog.bind(this)}
+                                           goToRecommendations={this.goToRecommendations.bind(this)}/>
+                                <PersonalInfoDialog personalInfo={this.props.personalInfo}/>
+                            </div>
                             : <Recommendations musicRec={this.props.musicRec}/>)
                         : (this.state.location === "index" ?
                         <Index goToLogin={this.goToLogin} goToSignUp={this.goToSignUp}/> :
@@ -86,6 +107,9 @@ class App extends Component {
                                       username={this.props.currentUser ? this.props.currentUser.username : "null"}
                                       handleClose={this.handleRecommendationsDialogClose.bind(this)}
                                       goToRecommendations={this.goToRecommendations.bind(this)}/>
+                <ModifyPersonalInfoDialog personalInfo={this.state.personalInfo} cancel={this.cancel}/>
+
+
             </div>
         );
     }
@@ -95,15 +119,17 @@ export default withTracker(() => {
     if (Meteor.user()) {
         Meteor.subscribe('tones');
         Meteor.subscribe('music_rec');
+        Meteor.subscribe("PersonalInfo");
         let tones = Tones.find().fetch();
+        let personalInfo = PersonalInfo.find().fetch()[0];
+        console.log(personalInfo);
         let musicRec = MusicRecommendations.find().fetch().pop();
-        if(musicRec)
-            console.log(musicRec.playlists);
 
         return {
             currentUser: Meteor.user(),
             tones: tones,
-            musicRec: musicRec?musicRec.playlists:undefined
+            musicRec: musicRec ? musicRec.playlists : undefined,
+            personalInfo: personalInfo
         }
     }
     return {};
