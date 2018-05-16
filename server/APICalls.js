@@ -1,7 +1,9 @@
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 import {Tones} from "/imports/api/Tones.js";
+import {PersonalInfo} from "/imports/api/PersonalInfo.js";
 import {MusicRecommendations} from "../imports/api/musicRecommendations";
+import { Email } from 'meteor/email'
 
 
 Meteor.methods({
@@ -55,7 +57,7 @@ Meteor.methods({
     },
     'tones.translate'(text, userId) {
         check(text, String);
-
+        check(userId, String);
         const translate = require('google-translate-api');
         translate(text, {to: 'en'}).then(res => {
             console.log(res.text);
@@ -95,6 +97,37 @@ Meteor.methods({
             .catch((err) => {
                 console.log(err);
             });
+    },
+    'email.sendEmail'(userId){
+        check(userId, String);
+        let subject="Alerta Emotioner! Alguien que te importa te necesita.";
+        let from='Emotioner <emotionerApp@gmail.com>';
+        let info=PersonalInfo.find({userId:userId}).fetch();
+        let name=info.name;
+        let aidName=info.aidName;
+        let to=info.aidEmail;
+        let text="Dear +"+aidName+", \n" +
+        +name+" te necesita. Lleva 5 días con tristeza registrada en los útlimos 10 días. Comunícate con él para saber como se encuentra.";
+        this.unblock();
+        Email.send({ to, from, subject, text });
+    },
+    'email.test'(){
+
+        let subject="Emotioner alert! Someone you care about need you.";
+        let from='Emotioner <emotionerApp@gmail.com>';
+        let to="jma.lovera10@uniandes.edu.co";
+        let text="Se jodió perrito";
+        this.unblock();
+        Email.send({ to, from, subject, text });
+    },
+    'PersonalInfo.insert'(name, aidName, aidEmail,userId) {
+        check([name,aidName, aidEmail,userId], [String]);
+        PersonalInfo.insert({
+            userId:userId,
+            name:name,
+            aidEmail:aidEmail,
+            aidName:aidName
+        })
     }
 
 });

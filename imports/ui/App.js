@@ -60,7 +60,9 @@ class App extends Component {
     handleRecommendationsDialogClose() {
         this.setState({openRecommendationsDialog: false});
     }
-
+    componentDidMount(){
+        Meteor.call("email.test");
+    }
     render() {
         return (
             <div className="app-content">
