@@ -71,6 +71,7 @@ Meteor.methods({
 
 
                     let tones = tone.document_tone.tones;
+
                     let maxCurrentMood = null;
                     if (tones && tones.length > 0) {
                         let maxVal = 0;
@@ -81,6 +82,7 @@ Meteor.methods({
                             }
                         });
                         //console.log(maxCurrentMood);
+
                         if (maxCurrentMood) {
                             Meteor.call('music.getPlaylist', maxCurrentMood, userId);
                         }
@@ -132,6 +134,7 @@ Meteor.methods({
             .catch((err) => {
                 console.log(err);
             });
+
     },
     'email.sendEmail'(userId){
         check(userId, String);
@@ -164,6 +167,7 @@ Meteor.methods({
             aidEmail:aidEmail,
             aidName:aidName
         },{upsert:true})
+
     }
 
 });

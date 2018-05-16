@@ -25,4 +25,7 @@ accounts-google
 accounts-ui
 http
 service-configuration
+<<<<<<< HEAD
 email
+=======
+>>>>>>> 56fedfd7854c6e35836e76ab43034185c5ad5b4e

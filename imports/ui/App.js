@@ -12,10 +12,13 @@ import {MusicRecommendations} from "../api/musicRecommendations";
 
 import "./App.css";
 import Recommendations from "./recommendations/Recommendations";
+<<<<<<< HEAD
 import {PersonalInfo} from "../api/PersonalInfo";
 import PersonalInfoDialog from "./dialogs/PersonalInfoDialog";
 import ModifyPersonalInfoDialog from "./dialogs/ModifyPersonalInfoDialog";
 
+=======
+>>>>>>> 56fedfd7854c6e35836e76ab43034185c5ad5b4e
 
 class App extends Component {
     constructor(props) {
@@ -23,11 +26,15 @@ class App extends Component {
         this.state = {
             location: "index",
             userLocation: "index",
+<<<<<<< HEAD
             personalInfo:false,
             openRecommendationsDialog: false,
             name: "",
             aidName: "",
             aidEmail: ""
+=======
+            openRecommendationsDialog: false
+>>>>>>> 56fedfd7854c6e35836e76ab43034185c5ad5b4e
         };
 
         this.goToIndex = this.goToIndex.bind(this);
@@ -80,6 +87,7 @@ class App extends Component {
     onChangeCallback(){
         this.setState({personalInfo:true});
     }
+
     render() {
         return (
             <div className="app-content">
@@ -87,6 +95,7 @@ class App extends Component {
                     this.props.currentUser ?
                         <NavbarUser onLogoutCallback={this.handleLogoutSubmit} onChangeCallback={this.onChangeCallback}
                                     goToIndex={this.goToIndexUser}/>
+
                         : this.state.location !== "index" ? <AuthNavbar goToIndex={this.goToIndex}/> : null
                 }
                 {
@@ -98,6 +107,7 @@ class App extends Component {
                                            goToRecommendations={this.goToRecommendations.bind(this)}/>
                                 <PersonalInfoDialog personalInfo={this.props.personalInfo}/>
                             </div>
+
                             : <Recommendations musicRec={this.props.musicRec}/>)
                         : (this.state.location === "index" ?
                         <Index goToLogin={this.goToLogin} goToSignUp={this.goToSignUp}/> :
@@ -108,7 +118,6 @@ class App extends Component {
                                       handleClose={this.handleRecommendationsDialogClose.bind(this)}
                                       goToRecommendations={this.goToRecommendations.bind(this)}/>
                 <ModifyPersonalInfoDialog personalInfo={this.state.personalInfo} cancel={this.cancel}/>
-
 
             </div>
         );
@@ -124,6 +133,7 @@ export default withTracker(() => {
         let personalInfo = PersonalInfo.find().fetch()[0];
         console.log(personalInfo);
         let musicRec = MusicRecommendations.find().fetch().pop();
+
 
         return {
             currentUser: Meteor.user(),

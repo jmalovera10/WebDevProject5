@@ -67,8 +67,6 @@ export default class UserIndex extends Component {
 
     }
 
-
-
     onSubmit() {
         this.setState({loading: true},
             Meteor.call("tones.translate", this.state.text, Meteor.user()._id, (err, val) => {
@@ -193,8 +191,10 @@ export default class UserIndex extends Component {
                                     <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
 
 
-                                </MuiThemeProvider>
+                                <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
                                 <h1 className="auth-text">Analizando</h1>
+
+                            </MuiThemeProvider>
                             </div>
                             : null
 
