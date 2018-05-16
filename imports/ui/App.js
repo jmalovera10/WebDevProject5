@@ -6,19 +6,15 @@ import NavbarUser from "./navbar/NavbarUser.js";
 import AuthNavbar from "./navbar/AuthNavbar.js";
 import UserIndex from "./index/UserIndex.js";
 import AuthManager from "./authentication/AuthManager.js";
-import RecommendationDialog from "./dialogs/RecommendationDialog.js";
-import {Tones} from "/imports/api/Tones.js";
-import {MusicRecommendations} from "../api/musicRecommendations";
-
 import "./App.css";
 import Recommendations from "./recommendations/Recommendations";
-<<<<<<< HEAD
-import {PersonalInfo} from "../api/PersonalInfo";
 import PersonalInfoDialog from "./dialogs/PersonalInfoDialog";
+import RecommendationDialog from "./dialogs/RecommendationDialog";
 import ModifyPersonalInfoDialog from "./dialogs/ModifyPersonalInfoDialog";
+import {Tones} from "/imports/api/Tones.js";
+import {MusicRecommendations} from "../api/musicRecommendations";
+import {PersonalInfo} from "../api/PersonalInfo";
 
-=======
->>>>>>> 56fedfd7854c6e35836e76ab43034185c5ad5b4e
 
 class App extends Component {
     constructor(props) {
@@ -26,15 +22,8 @@ class App extends Component {
         this.state = {
             location: "index",
             userLocation: "index",
-<<<<<<< HEAD
             personalInfo:false,
-            openRecommendationsDialog: false,
-            name: "",
-            aidName: "",
-            aidEmail: ""
-=======
             openRecommendationsDialog: false
->>>>>>> 56fedfd7854c6e35836e76ab43034185c5ad5b4e
         };
 
         this.goToIndex = this.goToIndex.bind(this);
