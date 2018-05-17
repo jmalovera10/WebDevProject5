@@ -19,7 +19,7 @@ export default class Recommendations extends Component {
     }
 
     goToNextPlaylist() {
-        let musicRec = this.props.musicRec;
+        let musicRec = this.props.musicRec[0].playlists.items;
         if (musicRec && this.state.currentPlaylist + 1 < musicRec.length) {
             let curr = this.state.currentPlaylist;
             curr++;
@@ -31,7 +31,7 @@ export default class Recommendations extends Component {
     }
 
     goToPreviousPlaylist() {
-        let musicRec = this.props.musicRec;
+        let musicRec = this.props.musicRec[0].playlists.items;
         if (musicRec && this.state.currentPlaylist - 1 > 0) {
             let curr = this.state.currentPlaylist;
             curr--;
@@ -53,14 +53,13 @@ export default class Recommendations extends Component {
             width: 700
         };
 
-        const view = 'list'; // or 'coverart'
-        const theme = 'black'; // or 'white'
+        const view = 'list'; // or 'coverart' list
+        const theme = 'white'; // or 'white' black
         let playlist = null;
         if (this.props.musicRec && this.props.musicRec.length > 0) {
-            let pop = this.props.musicRec.pop();
-            console.log(pop);
+            let pop = this.props.musicRec[0];
             playlist = pop.playlists.items[this.state.currentPlaylist].uri;
-
+            console.log(playlist);
         }
 
         return (

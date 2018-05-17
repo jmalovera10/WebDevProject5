@@ -3,7 +3,7 @@ import {check} from 'meteor/check';
 import {Tones} from "/imports/api/Tones.js";
 import {PersonalInfo} from "/imports/api/PersonalInfo.js";
 import {MusicRecommendations} from "../imports/api/musicRecommendations";
-import { Email } from 'meteor/email'
+import {Email} from 'meteor/email'
 
 
 Meteor.methods({
@@ -35,35 +35,35 @@ Meteor.methods({
                         created_at: new Date(),
                         tone: tone.document_tone.tones
                     });
-                    if(tone.document_tone.tones){
-                        let sadness=false;
-                        tone.document_tone.tones.forEach((t)=>{
-                            if (t.tone_id==="sadness"){
-                                sadness=true;
+                    if (tone.document_tone.tones) {
+                        let sadness = false;
+                        tone.document_tone.tones.forEach((t) => {
+                            if (t.tone_id === "sadness") {
+                                sadness = true;
                             }
 
                         });
-                        if(sadness){
+                        if (sadness) {
                             console.log("the dude is sad");
-                            let tonesUser=Tones.find({userId: userId}, {sort: {created_at:-1}}).fetch();
-                            let count=0;
-                            let total=0;
-                            for (let tt of tonesUser){
-                                let sadness=false;
-                                tt.tone.forEach((t)=>{
-                                    if (t.tone_id==="sadness"){
-                                        sadness=true;
+                            let tonesUser = Tones.find({userId: userId}, {sort: {created_at: -1}}).fetch();
+                            let count = 0;
+                            let total = 0;
+                            for (let tt of tonesUser) {
+                                let sadness = false;
+                                tt.tone.forEach((t) => {
+                                    if (t.tone_id === "sadness") {
+                                        sadness = true;
                                     }
 
                                 });
-                                if(sadness){
+                                if (sadness) {
                                     count++;
                                 }
                                 total++;
-                                if(total===10) break;
+                                if (total === 10) break;
                             }
-                            if (count>5){
-                                Meteor.call('email.sendEmail',userId);
+                            if (count > 5) {
+                                Meteor.call('email.sendEmail', userId);
                             }
                         }
 
@@ -103,6 +103,7 @@ Meteor.methods({
             });
         }).catch(err => {
             console.error(err);
+            console.log("failed to translate text");
         });
     },
 
@@ -115,84 +116,84 @@ Meteor.methods({
             id: process.env.SPFY_CLIENT,
             secret: process.env.SPFY_SECR
         });
-        let searchParam="";
-        switch (emotion){
+        let searchParam = "";
+        switch (emotion) {
             case "anger":
-                searchParam="relax";
+                searchParam = "relax";
                 break;
             case "joy":
-                searchParam="happy hits";
+                searchParam = "happy hits";
                 break;
             case "confident":
-                searchParam="tender";
+                searchParam = "tender";
                 break;
             case "analytical":
-                searchParam="Mood Booster";
+                searchParam = "Mood Booster";
                 break;
             case "tentative":
-                searchParam="confidence";
+                searchParam = "confidence";
                 break;
             case "fear":
-                searchParam="confidence";
+                searchParam = "confidence";
                 break;
             default: //aka sadness
-                searchParam="happy hits";
+                searchParam = "happy hits";
                 break;
 
         }
         spotify.search({type: 'playlist', query: searchParam})
             .then(Meteor.bindEnvironment((response) => {
                 console.log(response);
-                /*
                 let fetch = MusicRecommendations.findOne({userId: userId});
                 console.log(fetch);
-                if(fetch) {
-                   let playlists = fetch.playlists;
-                    playlists.push(response);*/
-                    MusicRecommendations.update({userId:userId}, {$set: {playlists:[response]}}, {upsert:true});
-               /* }else{
+                if (fetch) {
+                    MusicRecommendations.update({userId: userId}, {$set: {playlists: [response]}});
+                } else {
                     MusicRecommendations.insert({
                         userId: userId,
                         playlists: [response]
                     });
-                } */
+                }
             }))
             .catch((err) => {
                 console.log(err);
+                console.log("Failed to fetch spotify list");
             });
 
     },
-    'email.sendEmail'(userId){
+    'email.sendEmail'(userId) {
         check(userId, String);
-        let subject="Alerta Emotioner! Alguien que te importa te necesita.";
-        let from='Emotioner <emotionerApp@gmail.com>';
-        let info=PersonalInfo.find({userId:userId}).fetch()[0];
-        let name=info.name;
+        let subject = "Alerta Emotioner! Alguien que te importa te necesita.";
+        let from = 'Emotioner <emotionerApp@gmail.com>';
+        let info = PersonalInfo.find({userId: userId}).fetch()[0];
+        let name = info.name;
         console.log(name);
-        let aidName=info.aidName;
-        let to=info.aidEmail;
-        let text="Estimado "+aidName+", \n" +
-        name+" te necesita. Lleva 5 días con tristeza registrada en los útlimos 10 días. Comunícate con él para saber como se encuentra.";
+        let aidName = info.aidName;
+        let to = info.aidEmail;
+        let text = "Estimado " + aidName + ", \n" +
+            name + " te necesita. Lleva 5 días con tristeza registrada en los útlimos 10 días. Comunícate con él para saber como se encuentra.";
         this.unblock();
-        Email.send({ to, from, subject, text });
+        Email.send({to, from, subject, text}).catch((err)=>{
+            console.log("Failed to send email");
+        });
     },
-    'email.test'(){
+    'email.test'() {
 
-        let subject="Emotioner alert! Someone you care about need you.";
-        let from='Emotioner <emotionerApp@gmail.com>';
-        let to="jma.lovera10@uniandes.edu.co";
-        let text="Se jodió perrito";
+        let subject = "Emotioner alert! Someone you care about need you.";
+        let from = 'Emotioner <emotionerApp@gmail.com>';
+        let to = "jma.lovera10@uniandes.edu.co";
+        let text = "Se jodió perrito";
         this.unblock();
-        Email.send({ to, from, subject, text });
+        Email.send({to, from, subject, text});
     },
-    'PersonalInfo.insert'(name, aidName, aidEmail,userId) {
-        check([name,aidName, aidEmail,userId], [String]);
-        PersonalInfo.update({userId:userId},{
-            userId:userId,
-            name:name,
-            aidEmail:aidEmail,
-            aidName:aidName
-        },{upsert:true})
+    'PersonalInfo.insert'(name, aidName, aidEmail, userId) {
+        check([name, aidName, aidEmail, userId], [String]);
+        PersonalInfo.update({userId: userId}, {
+            userId: userId,
+            name: name,
+            aidEmail: aidEmail,
+            aidName: aidName
+        }, {upsert: true})
 
     }
 
