@@ -10,6 +10,6 @@ Accounts.ui.config({
 });
 
 Meteor.startup(()=>{
-
     render(<App/>, document.getElementById("render-target"));
+    $('html').attr('lang', 'es');
 });
