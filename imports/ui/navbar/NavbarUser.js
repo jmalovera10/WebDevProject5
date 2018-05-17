@@ -32,8 +32,10 @@ export default class NavbarUser extends Component {
                                 targetOrigin={{horizontal: 'left', vertical: 'top'}}
 
                             >
-                                <MenuItem primaryText="Sign out" leftIcon={<SignOut/>}
+                                <MenuItem primaryText="Salir" leftIcon={<SignOut/>}
                                           onClick={this.props.onLogoutCallback}/>
+                                <MenuItem primaryText="Cambiar persona de contacto"
+                                          onClick={this.props.onChangeCallback}/>
                             </IconMenu>
                         }
                         titleStyle={titleLayout}

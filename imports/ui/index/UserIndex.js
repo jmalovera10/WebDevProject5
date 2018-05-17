@@ -12,7 +12,6 @@ import Slider from 'material-ui/Slider';
 import Carousel from "../Carousel";
 import {Meteor} from "meteor/meteor";
 
-
 export default class UserIndex extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +19,6 @@ export default class UserIndex extends Component {
             text: "",
             loading: false
         };
-        this.onStop = this.onStop.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
@@ -66,10 +64,7 @@ export default class UserIndex extends Component {
             })
         }
 
-    }
 
-    onStop(blob) {
-        console.log(blob);
     }
 
     onSubmit() {
@@ -172,7 +167,6 @@ export default class UserIndex extends Component {
                                         icon={<RecordAction color={red700}/>}
                                     />
                                 </MuiThemeProvider>
-
                             </div>
                         </div>
                         <div className="row justify-content-around">
@@ -191,12 +185,17 @@ export default class UserIndex extends Component {
                             <Subheader>Today's results</Subheader>
                         </MuiThemeProvider>
                         {this.state.loading ?
-                            <MuiThemeProvider>
+                            <div>
+                                <MuiThemeProvider>
+
+                                    <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
+
 
                                 <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
                                 <h1 className="auth-text">Analizando</h1>
 
                             </MuiThemeProvider>
+                            </div>
                             : null
 
                         }
