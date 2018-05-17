@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import BubbleChart from "./D3/BubbleChart";
-import StatsChart from "./D3/StatsChart";
-import BarChart2 from "./D3/BarChart2";
-import BrushBarChart from "./D3/BrushBarChart";
+import BubbleChart from "../D3/BubbleChart";
+import StatsChart from "../D3/StatsChart";
+import BarChart2 from "../D3/BarChart2";
+import BrushBarChart from "../D3/BrushBarChart";
 import "./Carousel.css";
 
 
@@ -111,7 +111,6 @@ export default class Carousel extends Component {
                         <li data-target="#demo" data-slide-to="0" className="active"></li>
                         <li data-target="#demo" data-slide-to="1"></li>
                         <li data-target="#demo" data-slide-to="2"></li>
-                        <li data-target="#demo" data-slide-to="3"></li>
                     </ul>
 
                     <div className="carousel-inner">
@@ -138,9 +137,6 @@ export default class Carousel extends Component {
                                       analytical={this.totalanalytical}
                                       confident={this.totalconfident}
                                       tentative={this.totaltentative}/>
-                        </div>
-                        <div className="carousel-item">
-                            <StatsChart width={600} height={550} data={this.historical}/>
                         </div>
 
                     </div>

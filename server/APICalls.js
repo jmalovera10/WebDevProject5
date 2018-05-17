@@ -78,7 +78,7 @@ Meteor.methods({
                         tones.forEach((t) => {
                             if (maxVal < t.score) {
                                 maxVal = t.score;
-                                maxCurrentMood = t.tone_name;
+                                maxCurrentMood = t.tone_id;
                             }
                         });
                         //console.log(maxCurrentMood);
@@ -115,21 +115,47 @@ Meteor.methods({
             id: process.env.SPFY_CLIENT,
             secret: process.env.SPFY_SECR
         });
-        spotify.search({type: 'playlist', query: emotion})
+        let searchParam="";
+        switch (emotion){
+            case "anger":
+                searchParam="relax";
+                break;
+            case "joy":
+                searchParam="happy hits";
+                break;
+            case "confident":
+                searchParam="tender";
+                break;
+            case "analytical":
+                searchParam="Mood Booster";
+                break;
+            case "tentative":
+                searchParam="confidence";
+                break;
+            case "fear":
+                searchParam="confidence";
+                break;
+            default: //aka sadness
+                searchParam="happy hits";
+                break;
+
+        }
+        spotify.search({type: 'playlist', query: searchParam})
             .then(Meteor.bindEnvironment((response) => {
                 console.log(response);
+                /*
                 let fetch = MusicRecommendations.findOne({userId: userId});
                 console.log(fetch);
                 if(fetch) {
-                    let playlists = fetch.playlists;
-                    playlists.push(response);
-                    MusicRecommendations.update({userId:userId}, {$set: {playlists:playlists}});
-                }else{
+                   let playlists = fetch.playlists;
+                    playlists.push(response);*/
+                    MusicRecommendations.update({userId:userId}, {$set: {playlists:[response]}}, {upsert:true});
+               /* }else{
                     MusicRecommendations.insert({
                         userId: userId,
                         playlists: [response]
                     });
-                }
+                } */
             }))
             .catch((err) => {
                 console.log(err);

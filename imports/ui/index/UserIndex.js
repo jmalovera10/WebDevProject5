@@ -9,7 +9,7 @@ import RecordAction from 'material-ui/svg-icons/av/mic';
 import {red700} from 'material-ui/styles/colors';
 import Subheader from 'material-ui/Subheader';
 import Slider from 'material-ui/Slider';
-import Carousel from "../Carousel";
+import Carousel from "./Carousel";
 import {Meteor} from "meteor/meteor";
 
 export default class UserIndex extends Component {
