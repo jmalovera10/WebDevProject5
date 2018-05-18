@@ -111,7 +111,8 @@ class App extends Component {
                                       username={this.props.currentUser ? this.props.currentUser.username : "null"}
                                       handleClose={this.handleRecommendationsDialogClose.bind(this)}
                                       goToRecommendations={this.goToRecommendations.bind(this)}/>
-                <ModifyPersonalInfoDialog personalInfo={this.state.personalInfo} realInfo={this.props.personalInfo} cancel={this.cancel}/>
+                <ModifyPersonalInfoDialog personalInfo={this.state.personalInfo} realInfo={this.props.personalInfo}
+                                          cancel={this.cancel}/>
 
             </div>
         );
@@ -129,14 +130,30 @@ export default withTracker(() => {
         let personalInfo = PersonalInfo.find().fetch()[0];
         let musicRec = MusicRecommendations.find().fetch().pop();
         let speech = Speech.find().fetch()[0];
-        let likes=PlaylistLikes.find().fetch();
+        let likes = PlaylistLikes.find().fetch();
+
+        if (likes && likes.length > 0 && musicRec[0]) {
+            likes.forEach((like) => {
+                musicRec[0].playlists.items.forEach((m)=>{
+                    if (like.uri === m.uri){
+                        m.likes = like.likes;
+                        console.log(m);
+                    }
+
+                });
+            });
+            musicRec[0].playlists.items.sort((a, b) => {
+                return a.likes < b.likes ? -1 : a.likes > b.likes ? 1 : 0;
+            });
+        }
+
 
         return {
             currentUser: Meteor.user(),
             tones: tones,
             musicRec: musicRec ? musicRec.playlists : undefined,
             personalInfo: personalInfo,
-            likes:likes,
+            likes: likes,
             transcript: speech ? speech.transcript : null
         }
     }
