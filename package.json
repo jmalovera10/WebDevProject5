@@ -26,6 +26,7 @@
     "react-audio-recorder-wavdownloader": "^2.0.5",
     "react-dom": "^16.3.2",
     "react-snake-game": "^1.0.9",
+    "react-speech-recognition": "^1.0.6",
     "react-spotify-player": "^1.0.4",
     "recharts": "^1.0.0-beta.10",
     "watson-developer-cloud": "^3.4.0"

@@ -5,12 +5,11 @@ import FlatButton from 'material-ui/FlatButton';
 import "./UserIndex.css";
 import BubbleChart from "../D3/BubbleChart";
 import CircularProgress from 'material-ui/CircularProgress';
-import RecordAction from 'material-ui/svg-icons/av/mic';
-import {red700} from 'material-ui/styles/colors';
 import Subheader from 'material-ui/Subheader';
 import Slider from 'material-ui/Slider';
 import Carousel from "./Carousel";
 import {Meteor} from "meteor/meteor";
+import SpeechRecognizer from './SpeechRecognizer.js';
 
 export default class UserIndex extends Component {
     constructor(props) {
@@ -21,7 +20,6 @@ export default class UserIndex extends Component {
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
     }
 
     componentDidMount() {
@@ -85,6 +83,10 @@ export default class UserIndex extends Component {
         this.setState({loading: false});
     }
 
+    updateVoiceTranscript(value){
+        this.setState({text:value});
+    }
+
     render() {
         this.analytical = 0;
         this.anger = 0;
@@ -146,6 +148,7 @@ export default class UserIndex extends Component {
                                 multiLine={true}
                                 rows={2}
                                 rowsMax={8}
+                                value={this.props.transcript}
                             />
                         </MuiThemeProvider>
                         <div className="row">
@@ -159,14 +162,7 @@ export default class UserIndex extends Component {
                                 </MuiThemeProvider>
                             </div>
                             <div className="col-6">
-                                <MuiThemeProvider>
-                                    <FlatButton
-                                        ref={(FlatButton) => {
-                                            this.recordButton = FlatButton
-                                        }}
-                                        icon={<RecordAction color={red700}/>}
-                                    />
-                                </MuiThemeProvider>
+                                <SpeechRecognizer/>
                             </div>
                         </div>
                         <div className="row justify-content-around">
@@ -175,7 +171,6 @@ export default class UserIndex extends Component {
                                     <FlatButton
                                         label={"Ver Recomendaciones"}
                                         primary={true}
-                                        onClick={this.props.goToRecommendations}
                                     />
                                 </MuiThemeProvider>
                             </div>
@@ -189,12 +184,10 @@ export default class UserIndex extends Component {
                                 <MuiThemeProvider>
 
                                     <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
+                                    <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
+                                    <h1 className="auth-text">Analizando</h1>
 
-
-                                <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
-                                <h1 className="auth-text">Analizando</h1>
-
-                            </MuiThemeProvider>
+                                </MuiThemeProvider>
                             </div>
                             : null
 

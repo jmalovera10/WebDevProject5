@@ -32,7 +32,7 @@ export default class Recommendations extends Component {
 
     goToPreviousPlaylist() {
         let musicRec = this.props.musicRec[0].playlists.items;
-        if (musicRec && this.state.currentPlaylist - 1 > 0) {
+        if (musicRec && this.state.currentPlaylist - 1 >= 0) {
             let curr = this.state.currentPlaylist;
             curr--;
             this.setState({currentPlaylist: curr, nextDisabled: false});
