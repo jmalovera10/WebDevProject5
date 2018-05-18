@@ -15,6 +15,7 @@ import {Tones} from "/imports/api/Tones.js";
 import {MusicRecommendations} from "../api/musicRecommendations";
 import {PersonalInfo} from "../api/PersonalInfo";
 import {PlaylistLikes} from "../api/PlaylistsLikes";
+import {Speech} from "../api/speech";
 
 
 class App extends Component {
@@ -23,7 +24,7 @@ class App extends Component {
         this.state = {
             location: "index",
             userLocation: "index",
-            personalInfo:false,
+            personalInfo: false,
             openRecommendationsDialog: false
         };
 
@@ -71,11 +72,13 @@ class App extends Component {
     componentDidMount() {
 
     }
-    cancel(){
-        this.setState({personalInfo:false});
+
+    cancel() {
+        this.setState({personalInfo: false});
     }
-    onChangeCallback(){
-        this.setState({personalInfo:true});
+
+    onChangeCallback() {
+        this.setState({personalInfo: true});
     }
 
     render() {
@@ -94,7 +97,8 @@ class App extends Component {
                             <div>
                                 <UserIndex tones={this.props.tones}
                                            openRecommendationsDialog={this.openRecommendationsDialog.bind(this)}
-                                           goToRecommendations={this.goToRecommendations.bind(this)}/>
+                                           goToRecommendations={this.goToRecommendations.bind(this)}
+                                           transcript={this.props.transcript}/>
                                 <PersonalInfoDialog personalInfo={this.props.personalInfo}/>
                             </div>
 
@@ -120,19 +124,21 @@ export default withTracker(() => {
         Meteor.subscribe('music_rec');
         Meteor.subscribe("PersonalInfo");
         Meteor.subscribe("PlaylistLikes");
+        Meteor.subscribe('speech');
         let tones = Tones.find().fetch();
         let personalInfo = PersonalInfo.find().fetch()[0];
-        console.log(personalInfo);
         let musicRec = MusicRecommendations.find().fetch().pop();
         let likes=PlaylistLikes.find().fetch();
 
+        let speech = Speech.find().fetch();
 
         return {
             currentUser: Meteor.user(),
             tones: tones,
             musicRec: musicRec ? musicRec.playlists : undefined,
             personalInfo: personalInfo,
-            likes:likes
+            likes:likes,
+            transcript: speech ? speech.transcript : null
         }
     }
     return {};
