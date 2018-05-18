@@ -81,11 +81,23 @@ export default class UserIndex extends Component {
         this.setState({text: e.target.value});
     }
 
-    componentWillReceiveProps() {
-        this.setState({loading: false});
+    componentWillReceiveProps(nextProps) {
+        if(this.props!==nextProps){
+            if(nextProps.transcript) {
+                this.setState((prevState) => {
+                    return {text: prevState.text + nextProps.transcript}
+                });
+            }
+            this.setState({loading: false});
+        }
+
+    }
+    componentDidUpdate(){
+
     }
 
     render() {
+
         this.analytical = 0;
         this.anger = 0;
         this.confident = 0;
@@ -143,7 +155,7 @@ export default class UserIndex extends Component {
                                 multiLine={true}
                                 rows={2}
                                 rowsMax={8}
-                                value={this.props.transcript? this.props.transcript: ""}
+                                value={this.state.text}
                             />
                         </MuiThemeProvider>
                         <div className="row">
