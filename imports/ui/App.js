@@ -14,6 +14,7 @@ import ModifyPersonalInfoDialog from "./dialogs/ModifyPersonalInfoDialog";
 import {Tones} from "/imports/api/Tones.js";
 import {MusicRecommendations} from "../api/musicRecommendations";
 import {PersonalInfo} from "../api/PersonalInfo";
+import {PlaylistLikes} from "../api/PlaylistsLikes";
 
 
 class App extends Component {
@@ -97,7 +98,7 @@ class App extends Component {
                                 <PersonalInfoDialog personalInfo={this.props.personalInfo}/>
                             </div>
 
-                            : <Recommendations musicRec={this.props.musicRec}/>)
+                            : <Recommendations musicRec={this.props.musicRec} likes={this.props.likes}/>)
                         : (this.state.location === "index" ?
                         <Index goToLogin={this.goToLogin} goToSignUp={this.goToSignUp}/> :
                         <AuthManager isLogin={this.state.location === "Login"} typeAuth={this.state.location}/>)
@@ -118,17 +119,20 @@ export default withTracker(() => {
         Meteor.subscribe('tones');
         Meteor.subscribe('music_rec');
         Meteor.subscribe("PersonalInfo");
+        Meteor.subscribe("PlaylistLikes");
         let tones = Tones.find().fetch();
         let personalInfo = PersonalInfo.find().fetch()[0];
         console.log(personalInfo);
         let musicRec = MusicRecommendations.find().fetch().pop();
+        let likes=PlaylistLikes.find().fetch();
 
 
         return {
             currentUser: Meteor.user(),
             tones: tones,
             musicRec: musicRec ? musicRec.playlists : undefined,
-            personalInfo: personalInfo
+            personalInfo: personalInfo,
+            likes:likes
         }
     }
     return {};

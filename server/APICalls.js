@@ -4,7 +4,7 @@ import {Tones} from "/imports/api/Tones.js";
 import {PersonalInfo} from "/imports/api/PersonalInfo.js";
 import {MusicRecommendations} from "../imports/api/musicRecommendations";
 import {Email} from 'meteor/email'
-
+import {PlaylistLikes} from "../imports/api/PlaylistsLikes";
 
 Meteor.methods({
 
@@ -194,6 +194,32 @@ Meteor.methods({
             aidEmail: aidEmail,
             aidName: aidName
         }, {upsert: true})
+
+    },
+    'playlist.like'(uri,userId){
+        check(uri, String);
+        check(userId, String);
+        let review=PlaylistLikes.find({uri:uri}).fetch();
+        if(review && review.length>0){
+            let newReview=review[0];
+            let users=newReview.users;
+            if(users.userId) return;
+            users[userId]=1;
+            let likes=newReview.likes;
+            likes++;
+            newReview.users=users;
+            newReview.likes=likes;
+        }
+        else{
+            let users={};
+            users[userId] = 1;
+            let newReview={
+                likes:1,
+                uri:uri,
+                users: users
+            };
+            PlaylistLikes.update({uri:uri},newReview, {upsert:true});
+        }
 
     }
 

@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import SpotifyPlayer from 'react-spotify-player';
 import Snake from "react-snake-game";
-
-
+import Heart from 'material-ui/svg-icons/action/favorite-border';
+import FilledHeart from 'material-ui/svg-icons/action/favorite';
+import {red700} from 'material-ui/styles/colors';
 import "./Recommendations.css";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import IconButton from 'material-ui/IconButton';
 
 export default class Recommendations extends Component {
     constructor(props) {
@@ -14,8 +17,8 @@ export default class Recommendations extends Component {
             currentPlaylist: 0,
             previousDisabled: true,
             nextDisabled: false,
-        }
-
+        };
+        this.likePlaylist = this.likePlaylist.bind(this);
     }
 
     goToNextPlaylist() {
@@ -41,6 +44,14 @@ export default class Recommendations extends Component {
         }
     }
 
+    likePlaylist() {
+        console.log("liking");
+        Meteor.call("playlist.like", this.props.musicRec[0].playlists.items[this.state.currentPlaylist].uri, Meteor.user()._id)
+    }
+    componentDidMount(){
+        console.log(this.props.likes);
+    }
+
     render() {
         // size may also be a plain string using the presets 'large' or 'compact'
         const size = {
@@ -53,6 +64,15 @@ export default class Recommendations extends Component {
             width: 700
         };
 
+        let playlistLikes = null;
+        if (this.props.likes && this.props.likes.length > 0) {
+            this.props.likes.forEach((like) => {
+                if (like.uri === this.props.musicRec[0].playlists.items[this.state.currentPlaylist].uri) {
+                    playlistLikes = like;
+                }
+            })
+        }
+        console.log(playlistLikes);
         const view = 'list'; // or 'coverart' list
         const theme = 'white'; // or 'white' black
         let playlist = null;
@@ -82,8 +102,19 @@ export default class Recommendations extends Component {
                             <button disabled={this.state.nextDisabled} onClick={this.goToNextPlaylist.bind(this)}
                                     className="btn col-6">Next Playlist
                             </button>
+                        </div>
+                        <div className="row">
+                            <div>
+                                 {playlistLikes ? playlistLikes.likes : 0} Me gusta
+                            </div>
+                            <MuiThemeProvider>
+                                <IconButton aria-label="Like" onClick={this.likePlaylist}>
+                                    {(playlistLikes && playlistLikes.users[Meteor.user()._id]) ?
 
-
+                                        <FilledHeart color={red700}/> :
+                                        <Heart />}
+                                </IconButton>
+                            </MuiThemeProvider>
                         </div>
                     </div>
                     <div className="col-md-6 col-12">

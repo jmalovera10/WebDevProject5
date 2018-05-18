@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -12,6 +12,7 @@ import Subheader from 'material-ui/Subheader';
 import Slider from 'material-ui/Slider';
 import Carousel from "./Carousel";
 import {Meteor} from "meteor/meteor";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
@@ -181,7 +182,7 @@ export default class UserIndex extends Component {
                                 </MuiThemeProvider>
                             </div>
                         </div>
-                        <MuiThemeProvider>
+                        <MuiThemeProvider muiTheme={muiTheme}>
                             <Subheader>Últimos resultados</Subheader>
                         </MuiThemeProvider>
                         {this.state.loading ?
@@ -215,7 +216,7 @@ export default class UserIndex extends Component {
                     </div>
                     <div className="col-sm-7 col-12">
 
-                        <MuiThemeProvider>
+                        <MuiThemeProvider  muiTheme={muiTheme}>
                             <Subheader>Resultados históricos</Subheader>
                         </MuiThemeProvider>
                         <Carousel tones={this.props.tones}/>
