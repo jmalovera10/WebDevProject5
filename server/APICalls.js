@@ -143,9 +143,7 @@ Meteor.methods({
         }
         spotify.search({type: 'playlist', query: searchParam})
             .then(Meteor.bindEnvironment((response) => {
-                console.log(response);
                 let fetch = MusicRecommendations.findOne({userId: userId});
-                console.log(fetch);
                 if (fetch) {
                     MusicRecommendations.update({userId: userId}, {$set: {playlists: [response]}});
                 } else {
