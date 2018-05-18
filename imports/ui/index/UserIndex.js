@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import "./UserIndex.css";
 import BubbleChart from "../D3/BubbleChart";
 import CircularProgress from 'material-ui/CircularProgress';
@@ -11,6 +12,8 @@ import Subheader from 'material-ui/Subheader';
 import Slider from 'material-ui/Slider';
 import Carousel from "./Carousel";
 import {Meteor} from "meteor/meteor";
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 
 export default class UserIndex extends Component {
     constructor(props) {
@@ -124,22 +127,19 @@ export default class UserIndex extends Component {
                 }
             })
         }
+        const muiTheme = getMuiTheme({
+
+            palette: {
+                primary1Color: "rgb(79, 111, 183)",
+                textColor: "#525252",
+            }
+        });
+
         return (
             <div>
                 <div className="row">
-                    <div className="col-sm-7 col-12">
-                        <MuiThemeProvider>
-                            <Subheader>Historical results</Subheader>
-                        </MuiThemeProvider>
-                        <Carousel tones={this.props.tones}/>
-                    </div>
-                    <div className="col-sm-1 col-1">
-                        <MuiThemeProvider>
-                            <Slider style={{height: 600}} axis="y"/>
-                        </MuiThemeProvider>
-                    </div>
                     <div className="col-sm-4 col-6">
-                        <MuiThemeProvider>
+                        <MuiThemeProvider muiTheme={muiTheme}>
                             <TextField
                                 onChange={this.onChange}
                                 hintText="Cuéntanos sobre tu día en un párrafo corto."
@@ -150,7 +150,7 @@ export default class UserIndex extends Component {
                         </MuiThemeProvider>
                         <div className="row">
                             <div className="col-6">
-                                <MuiThemeProvider>
+                                <MuiThemeProvider muiTheme={muiTheme}>
                                     <FlatButton
                                         onClick={this.onSubmit}
                                         primary={true}
@@ -159,7 +159,7 @@ export default class UserIndex extends Component {
                                 </MuiThemeProvider>
                             </div>
                             <div className="col-6">
-                                <MuiThemeProvider>
+                                <MuiThemeProvider muiTheme={muiTheme}>
                                     <FlatButton
                                         ref={(FlatButton) => {
                                             this.recordButton = FlatButton
@@ -169,18 +169,18 @@ export default class UserIndex extends Component {
                                 </MuiThemeProvider>
                             </div>
                         </div>
+                        <br/>
                         <div className="row justify-content-around">
-                            <div className="col-6">
-                                <MuiThemeProvider>
-                                    <FlatButton
-                                        label={"Ver Recomendaciones"}
+                            <div className="col-10">
+                                <MuiThemeProvider muiTheme={muiTheme}>
+                                    <RaisedButton
+                                        label="Ver Recomendaciones"
                                         primary={true}
                                         onClick={this.props.goToRecommendations}
                                     />
                                 </MuiThemeProvider>
                             </div>
                         </div>
-                        <br/>
                         <MuiThemeProvider>
                             <Subheader>Today's results</Subheader>
                         </MuiThemeProvider>
@@ -191,10 +191,10 @@ export default class UserIndex extends Component {
                                     <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
 
 
-                                <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
-                                <h1 className="auth-text">Analizando</h1>
+                                    <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
+                                    <h1 className="auth-text">Analizando</h1>
 
-                            </MuiThemeProvider>
+                                </MuiThemeProvider>
                             </div>
                             : null
 
@@ -208,6 +208,19 @@ export default class UserIndex extends Component {
                                      confident={this.confident}
                                      tentative={this.tentative}/>
                     </div>
+                    <div className="col-sm-1 col-1">
+                        <MuiThemeProvider muiTheme={muiTheme}>
+                            <Slider style={{height: 600}} axis="y"/>
+                        </MuiThemeProvider>
+                    </div>
+                    <div className="col-sm-7 col-12">
+
+                        <MuiThemeProvider>
+                            <Subheader>Historical results</Subheader>
+                        </MuiThemeProvider>
+                        <Carousel tones={this.props.tones}/>
+                    </div>
+
                 </div>
             </div>
         );

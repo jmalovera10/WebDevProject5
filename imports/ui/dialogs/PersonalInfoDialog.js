@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import {Meteor} from "meteor/meteor";
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
 // App component - represents the whole app
@@ -39,23 +40,30 @@ export default class PersonalInfoDialog extends Component {
     }
 
     render() {
+        const muiTheme = getMuiTheme({
+
+            palette: {
+                primary1Color: "rgb(79, 111, 183)",
+                textColor: "#525252",
+            }
+        });
 
         const actions = [
-            <MuiThemeProvider><TextField
+            <MuiThemeProvider muiTheme={muiTheme}><TextField
                 hintText="Su nombre completo"
                 onChange={this.handleNameChange}
             /></MuiThemeProvider>,
             <br/>,
-            <MuiThemeProvider><TextField
+            <MuiThemeProvider muiTheme={muiTheme}><TextField
                 hintText="Nombre de una persona a la cual notificar en caso de urgencia"
                 onChange={this.handleAidNameChange}
             /></MuiThemeProvider>,
             <br/>,
-            <MuiThemeProvider><TextField
+            <MuiThemeProvider muiTheme={muiTheme}><TextField
                 hintText="Email de esa persona"
                 onChange={this.handleAidEmailChange}
             /></MuiThemeProvider>, <br/>,
-            <MuiThemeProvider><FlatButton
+            <MuiThemeProvider muiTheme={muiTheme}><FlatButton
                 label="Enviar"
                 primary={true}
                 keyboardFocused={true}
@@ -66,7 +74,7 @@ export default class PersonalInfoDialog extends Component {
 
         return (
             <div>
-                <MuiThemeProvider>
+                <MuiThemeProvider muiTheme={muiTheme}>
                     <Dialog title="Necesitamos algunos datos tuyos para poder funcionar."
                             open={!this.props.personalInfo}
                             actions={actions}
