@@ -1,3 +1,9 @@
 /*--------------
 UserIndex Styles
  ---------------*/
+.col-sm-4{
+    align-content: center;
+    text-align: center;
+    margin: auto;
+    position: center;
+}

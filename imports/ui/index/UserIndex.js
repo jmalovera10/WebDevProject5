@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import "./UserIndex.css";
 import BubbleChart from "../D3/BubbleChart";
 import CircularProgress from 'material-ui/CircularProgress';
@@ -10,6 +11,8 @@ import Slider from 'material-ui/Slider';
 import Carousel from "./Carousel";
 import {Meteor} from "meteor/meteor";
 import SpeechRecognizer from './SpeechRecognizer.js';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 
 export default class UserIndex extends Component {
     constructor(props) {
@@ -126,22 +129,19 @@ export default class UserIndex extends Component {
                 }
             })
         }
+        const muiTheme = getMuiTheme({
+
+            palette: {
+                primary1Color: "rgb(79, 111, 183)",
+                textColor: "#525252",
+            }
+        });
+
         return (
             <div>
                 <div className="row">
-                    <div className="col-sm-7 col-12">
-                        <MuiThemeProvider>
-                            <Subheader>Historical results</Subheader>
-                        </MuiThemeProvider>
-                        <Carousel tones={this.props.tones}/>
-                    </div>
-                    <div className="col-sm-1 col-1">
-                        <MuiThemeProvider>
-                            <Slider style={{height: 600}} axis="y"/>
-                        </MuiThemeProvider>
-                    </div>
                     <div className="col-sm-4 col-6">
-                        <MuiThemeProvider>
+                        <MuiThemeProvider muiTheme={muiTheme}>
                             <TextField
                                 onChange={this.onChange}
                                 hintText="Cuéntanos sobre tu día en un párrafo corto."
@@ -153,7 +153,7 @@ export default class UserIndex extends Component {
                         </MuiThemeProvider>
                         <div className="row">
                             <div className="col-6">
-                                <MuiThemeProvider>
+                                <MuiThemeProvider muiTheme={muiTheme}>
                                     <FlatButton
                                         onClick={this.onSubmit}
                                         primary={true}
@@ -165,28 +165,26 @@ export default class UserIndex extends Component {
                                 <SpeechRecognizer/>
                             </div>
                         </div>
+                        <br/>
                         <div className="row justify-content-around">
-                            <div className="col-6">
-                                <MuiThemeProvider>
-                                    <FlatButton
-                                        label={"Ver Recomendaciones"}
+                            <div className="col-10">
+                                <MuiThemeProvider muiTheme={muiTheme}>
+                                    <RaisedButton
+                                        label="Ver Recomendaciones"
                                         primary={true}
                                     />
                                 </MuiThemeProvider>
                             </div>
                         </div>
-                        <br/>
                         <MuiThemeProvider>
-                            <Subheader>Today's results</Subheader>
+                            <Subheader>Últimos resultados</Subheader>
                         </MuiThemeProvider>
                         {this.state.loading ?
                             <div>
                                 <MuiThemeProvider>
-
                                     <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
                                     <CircularProgress color={"#BBDBB8"} size={200} thickness={7}/>
                                     <h1 className="auth-text">Analizando</h1>
-
                                 </MuiThemeProvider>
                             </div>
                             : null
@@ -201,6 +199,19 @@ export default class UserIndex extends Component {
                                      confident={this.confident}
                                      tentative={this.tentative}/>
                     </div>
+                    <div className="col-sm-1 col-1">
+                        <MuiThemeProvider muiTheme={muiTheme}>
+                            <Slider style={{height: 600}} axis="y"/>
+                        </MuiThemeProvider>
+                    </div>
+                    <div className="col-sm-7 col-12">
+
+                        <MuiThemeProvider>
+                            <Subheader>Resultados históricos</Subheader>
+                        </MuiThemeProvider>
+                        <Carousel tones={this.props.tones}/>
+                    </div>
+
                 </div>
             </div>
         );

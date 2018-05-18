@@ -110,7 +110,7 @@ class App extends Component {
                                       username={this.props.currentUser ? this.props.currentUser.username : "null"}
                                       handleClose={this.handleRecommendationsDialogClose.bind(this)}
                                       goToRecommendations={this.goToRecommendations.bind(this)}/>
-                <ModifyPersonalInfoDialog personalInfo={this.state.personalInfo} cancel={this.cancel}/>
+                <ModifyPersonalInfoDialog personalInfo={this.state.personalInfo} realInfo={this.props.personalInfo} cancel={this.cancel}/>
 
             </div>
         );

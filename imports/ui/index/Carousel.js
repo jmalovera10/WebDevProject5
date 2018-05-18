@@ -115,7 +115,16 @@ export default class Carousel extends Component {
 
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <BrushBarChart width={600} height={550} data={this.historical}/>
+                            <BarChart2 width={600} height={550}
+                                         anger={this.totalanger}
+                                         fear={this.totalfear}
+                                         joy={this.totaljoy}
+                                         sadness={this.totalsadness}
+                                         analytical={this.totalanalytical}
+                                         confident={this.totalconfident}
+                                         tentative={this.totaltentative}/>
+
+
                         </div>
                         <div className="carousel-item">
                             <BubbleChart width={650} height={600}
@@ -129,14 +138,7 @@ export default class Carousel extends Component {
 
                         </div>
                         <div className="carousel-item">
-                            <BarChart2 width={600} height={550}
-                                      anger={this.totalanger}
-                                      fear={this.totalfear}
-                                      joy={this.totaljoy}
-                                      sadness={this.totalsadness}
-                                      analytical={this.totalanalytical}
-                                      confident={this.totalconfident}
-                                      tentative={this.totaltentative}/>
+                            <BrushBarChart width={600} height={550} data={this.historical}/>
                         </div>
 
                     </div>
