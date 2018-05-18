@@ -182,7 +182,7 @@ export default class UserIndex extends Component {
                             </div>
                         </div>
                         <MuiThemeProvider>
-                            <Subheader>Today's results</Subheader>
+                            <Subheader>Últimos resultados</Subheader>
                         </MuiThemeProvider>
                         {this.state.loading ?
                             <div>
@@ -216,7 +216,7 @@ export default class UserIndex extends Component {
                     <div className="col-sm-7 col-12">
 
                         <MuiThemeProvider>
-                            <Subheader>Historical results</Subheader>
+                            <Subheader>Resultados históricos</Subheader>
                         </MuiThemeProvider>
                         <Carousel tones={this.props.tones}/>
                     </div>
