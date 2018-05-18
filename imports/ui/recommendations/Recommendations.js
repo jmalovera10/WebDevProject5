@@ -48,7 +48,8 @@ export default class Recommendations extends Component {
         console.log("liking");
         Meteor.call("playlist.like", this.props.musicRec[0].playlists.items[this.state.currentPlaylist].uri, Meteor.user()._id)
     }
-    componentDidMount(){
+
+    componentDidMount() {
         console.log(this.props.likes);
     }
 
@@ -79,7 +80,6 @@ export default class Recommendations extends Component {
         if (this.props.musicRec && this.props.musicRec.length > 0) {
             let pop = this.props.musicRec[0];
             playlist = pop.playlists.items[this.state.currentPlaylist].uri;
-            console.log(playlist);
         }
 
         return (
@@ -104,39 +104,48 @@ export default class Recommendations extends Component {
                             </button>
                         </div>
                         <div className="row">
-                            <div>
-                                 {playlistLikes ? playlistLikes.likes : 0} Me gusta
+                            <div className="col-6 sol-sm-3">
+                                <MuiThemeProvider>
+                                    <IconButton aria-label="Like" onClick={this.likePlaylist}>
+                                        {(playlistLikes && playlistLikes.users[Meteor.user()._id]) ?
+
+                                            <FilledHeart color={red700}/> :
+                                            <Heart/>}
+                                    </IconButton>
+                                </MuiThemeProvider>
+                                <div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6 sol-sm-3">
+                                        {playlistLikes ? playlistLikes.likes : 0} Me gusta
+                                    </div>
+                                </div>
                             </div>
-                            <MuiThemeProvider>
-                                <IconButton aria-label="Like" onClick={this.likePlaylist}>
-                                    {(playlistLikes && playlistLikes.users[Meteor.user()._id]) ?
+                            <div className="col-md-6 col-12">
+                                <div style={WRAPPER_STYLE}>
+                                    <Snake/>
+                                </div>
 
-                                        <FilledHeart color={red700}/> :
-                                        <Heart />}
-                                </IconButton>
-                            </MuiThemeProvider>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-6 col-12">
+
+                            </div>
+                            <div className="col-md-6 col-12">
+
+                            </div>
                         </div>
                     </div>
-                    <div className="col-md-6 col-12">
-                        <div style={WRAPPER_STYLE}>
-                            <Snake/>
-                        </div>
-
-                    </div>
                 </div>
-                <div className="row">
-                    <div className="col-md-6 col-12">
-
-                    </div>
-                    <div className="col-md-6 col-12">
-
-                    </div>
-                </div>
-            </div>
-        );
+            </div>);
     }
 }
-
 Recommendations.propTypes = {
     musicRec: PropTypes.array.isRequired
 };
+
+
+
+
+
