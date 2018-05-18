@@ -31,5 +31,23 @@ Meteor.methods({
         }else{
             throw new Error("unauthorized");
         }
+    },
+
+    'speech.reset'(userId){
+        check(userId, String);
+        if(userId){
+            let fetch = Speech.findOne({userId: userId});
+            console.log(fetch);
+            if (fetch) {
+                Speech.update({userId: userId}, {$set: {transcript: ""}});
+            } else {
+                Speech.insert({
+                    userId: userId,
+                    transcript: ""
+                });
+            }
+        }else{
+            throw new Error("unauthorized");
+        }
     }
 });

@@ -64,18 +64,16 @@ export default class UserIndex extends Component {
                 }
             })
         }
-
-
     }
 
     onSubmit() {
         this.setState({loading: true},
             Meteor.call("tones.translate", this.state.text, Meteor.user()._id, (err, val) => {
                 if (err) throw err;
+                Meteor.call('speech.reset',Meteor.user()._id);
                 this.props.openRecommendationsDialog();
             })
         );
-
     }
 
     onChange(e) {
@@ -84,10 +82,6 @@ export default class UserIndex extends Component {
 
     componentWillReceiveProps() {
         this.setState({loading: false});
-    }
-
-    updateVoiceTranscript(value){
-        this.setState({text:value});
     }
 
     render() {
@@ -148,7 +142,7 @@ export default class UserIndex extends Component {
                                 multiLine={true}
                                 rows={2}
                                 rowsMax={8}
-                                value={this.props.transcript}
+                                value={this.props.transcript? this.props.transcript: ""}
                             />
                         </MuiThemeProvider>
                         <div className="row">

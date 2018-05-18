@@ -126,7 +126,7 @@ export default withTracker(() => {
         let tones = Tones.find().fetch();
         let personalInfo = PersonalInfo.find().fetch()[0];
         let musicRec = MusicRecommendations.find().fetch().pop();
-        let speech = Speech.find().fetch();
+        let speech = Speech.find().fetch()[0];
 
         return {
             currentUser: Meteor.user(),
