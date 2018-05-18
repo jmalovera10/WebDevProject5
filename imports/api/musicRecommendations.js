@@ -12,7 +12,3 @@ if (Meteor.isServer) {
         return MusicRecommendations.find({userId: this.userId});
     });
 }
-
-Meteor.methods({
-
-});

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import BubbleChart from "../D3/BubbleChart";
-import StatsChart from "../D3/StatsChart";
 import BarChart2 from "../D3/BarChart2";
 import BrushBarChart from "../D3/BrushBarChart";
 import "./Carousel.css";
@@ -102,6 +101,7 @@ export default class Carousel extends Component {
             });
             this.historical.push(element);
         });
+
 
         return (
             < div >
