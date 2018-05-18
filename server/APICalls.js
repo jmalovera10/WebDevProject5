@@ -198,26 +198,35 @@ Meteor.methods({
         check(uri, String);
         check(userId, String);
         let review=PlaylistLikes.find({uri:uri}).fetch();
+        let newReview={};
         if(review && review.length>0){
-            let newReview=review[0];
+            newReview=review[0];
             let users=newReview.users;
-            if(users.userId) return;
-            users[userId]=1;
-            let likes=newReview.likes;
-            likes++;
+            let likes=0;
+            if(users[userId]) {
+                users[userId]=0;
+                likes=newReview.likes;
+                likes--;
+            }
+            else {
+                users[userId] = 1;
+                likes = newReview.likes;
+                likes++;
+            }
             newReview.users=users;
             newReview.likes=likes;
         }
         else{
             let users={};
             users[userId] = 1;
-            let newReview={
+            newReview={
                 likes:1,
                 uri:uri,
                 users: users
             };
-            PlaylistLikes.update({uri:uri},newReview, {upsert:true});
+
         }
+        PlaylistLikes.update({uri:uri},newReview, {upsert:true});
 
     }
 
