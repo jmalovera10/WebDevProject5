@@ -167,6 +167,8 @@ export default class UserIndex extends Component {
                                     <RaisedButton
                                         label="Ver Recomendaciones"
                                         primary={true}
+                                        onClick={this.props.goToRecommendations}
+                                        aria-label="Ver recomendaciones"
                                     />
                                 </MuiThemeProvider>
                             </div>
