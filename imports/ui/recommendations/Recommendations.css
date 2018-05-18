@@ -2,3 +2,8 @@
     padding-left: 10px;
     padding-left: 10px;
 }
+.center-likes{
+    text-align: center;
+    margin: auto;
+    position: center;
+}

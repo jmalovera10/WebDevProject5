@@ -4,7 +4,7 @@ import SpotifyPlayer from 'react-spotify-player';
 import Snake from "react-snake-game";
 import Heart from 'material-ui/svg-icons/action/favorite-border';
 import FilledHeart from 'material-ui/svg-icons/action/favorite';
-import {red700} from 'material-ui/styles/colors';
+import {red600} from 'material-ui/styles/colors';
 import "./Recommendations.css";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IconButton from 'material-ui/IconButton';
@@ -62,7 +62,7 @@ export default class Recommendations extends Component {
         const WRAPPER_STYLE = {
             margin: '30px auto',
             height: 500,
-            width: 700
+            width: 600
         };
 
         let playlistLikes = null;
@@ -94,6 +94,21 @@ export default class Recommendations extends Component {
                                 theme={theme}
                             />
                         </div>
+                        <div className="row justify-content-start">
+
+                            <div className="col-2 col-sm-1">
+                                <MuiThemeProvider>
+                                    <IconButton aria-label="Like" onClick={this.likePlaylist}>
+                                        {(playlistLikes && playlistLikes.users[Meteor.user()._id]) ?
+                                            <FilledHeart color={red600}/> :
+                                            <Heart/>}
+                                    </IconButton>
+                                </MuiThemeProvider>
+                            </div>
+
+                            <div className="col-sm-2 col-2 center-likes">{playlistLikes ? playlistLikes.likes : 0} Me gusta</div>
+                            <div className="col-sm-9 col-8"></div>
+                        </div>
                         <div className="row">
                             <button disabled={this.state.previousDisabled}
                                     onClick={this.goToPreviousPlaylist.bind(this)}
@@ -103,42 +118,18 @@ export default class Recommendations extends Component {
                                     className="btn col-6">Next Playlist
                             </button>
                         </div>
-                        <div className="row">
-                            <div className="col-6 sol-sm-3">
-                                <MuiThemeProvider>
-                                    <IconButton aria-label="Like" onClick={this.likePlaylist}>
-                                        {(playlistLikes && playlistLikes.users[Meteor.user()._id]) ?
 
-                                            <FilledHeart color={red700}/> :
-                                            <Heart/>}
-                                    </IconButton>
-                                </MuiThemeProvider>
-                                <div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-6 sol-sm-3">
-                                        {playlistLikes ? playlistLikes.likes : 0} Me gusta
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-12">
-                                <div style={WRAPPER_STYLE}>
-                                    <Snake/>
-                                </div>
-
-                            </div>
+                    </div>
+                    <div className="col-md-6 col-12">
+                        <div style={WRAPPER_STYLE}>
+                            <Snake/>
                         </div>
-                        <div className="row">
-                            <div className="col-md-6 col-12">
 
-                            </div>
-                            <div className="col-md-6 col-12">
-
-                            </div>
-                        </div>
                     </div>
                 </div>
-            </div>);
+            </div>
+
+        );
     }
 }
 Recommendations.propTypes = {
