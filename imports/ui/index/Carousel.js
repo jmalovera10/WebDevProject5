@@ -127,7 +127,7 @@ export default class Carousel extends Component {
 
                         </div>
                         <div className="carousel-item">
-                            <BubbleChart width={650} height={600}
+                            <BubbleChart width={650} height={550}
                                          anger={this.totalanger}
                                          fear={this.totalfear}
                                          joy={this.totaljoy}
