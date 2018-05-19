@@ -44,7 +44,6 @@ Meteor.methods({
 
                         });
                         if (sadness) {
-                            console.log("the dude is sad");
                             let tonesUser = Tones.find({userId: userId}, {sort: {created_at: -1}}).fetch();
                             let count = 0;
                             let total = 0;
@@ -81,7 +80,6 @@ Meteor.methods({
                                 maxCurrentMood = t.tone_id;
                             }
                         });
-                        //console.log(maxCurrentMood);
 
                         if (maxCurrentMood) {
                             Meteor.call('music.getPlaylist', maxCurrentMood, userId);
@@ -143,15 +141,26 @@ Meteor.methods({
         }
         spotify.search({type: 'playlist', query: searchParam})
             .then(Meteor.bindEnvironment((response) => {
-                let fetch = MusicRecommendations.findOne({userId: userId});
-                if (fetch) {
-                    MusicRecommendations.update({userId: userId}, {$set: {playlists: [response]}});
-                } else {
-                    MusicRecommendations.insert({
-                        userId: userId,
-                        playlists: [response]
-                    });
-                }
+                let playlists={};
+                playlists.playlists={};
+                playlists.playlists.items=[];
+                response.playlists.items.forEach((m)=>{
+                    let p=PlaylistLikes.find({uri:m.uri}).fetch()[0];
+
+                    let obj=m;
+                    if(p) {
+                        obj.likes = p.likes;
+                    }
+                    else{
+                        obj.likes=0;
+                    }
+                    playlists.playlists.items.push(obj);
+                });
+                playlists.playlists.items.sort((a, b) => {
+                    return b.likes - a.likes ;
+                });
+                MusicRecommendations.update({userId: userId}, {$set: {playlists: [playlists]}}, {upsert:true});
+
             }))
             .catch((err) => {
                 console.log(err);
@@ -165,15 +174,12 @@ Meteor.methods({
         let from = 'Emotioner <emotionerApp@gmail.com>';
         let info = PersonalInfo.find({userId: userId}).fetch()[0];
         let name = info.name;
-        console.log(name);
         let aidName = info.aidName;
         let to = info.aidEmail;
         let text = "Estimado " + aidName + ", \n" +
             name + " te necesita. Lleva 5 días con tristeza registrada en los útlimos 10 días. Comunícate con él para saber como se encuentra.";
         this.unblock();
-        Email.send({to, from, subject, text}).catch((err)=>{
-            console.log("Failed to send email");
-        });
+        Email.send({to, from, subject, text});
     },
     'email.test'() {
 

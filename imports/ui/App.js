@@ -132,20 +132,7 @@ export default withTracker(() => {
         let speech = Speech.find().fetch()[0];
         let likes = PlaylistLikes.find().fetch();
 
-        if (likes && likes.length > 0 && musicRec[0]) {
-            likes.forEach((like) => {
-                musicRec[0].playlists.items.forEach((m)=>{
-                    if (like.uri === m.uri){
-                        m.likes = like.likes;
-                        console.log(m);
-                    }
 
-                });
-            });
-            musicRec[0].playlists.items.sort((a, b) => {
-                return a.likes < b.likes ? -1 : a.likes > b.likes ? 1 : 0;
-            });
-        }
 
 
         return {
