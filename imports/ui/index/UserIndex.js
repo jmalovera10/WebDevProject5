@@ -161,7 +161,7 @@ export default class UserIndex extends Component {
                         <div className="row">
                             <div className="col-6">
                                 <MuiThemeProvider muiTheme={muiTheme}>
-                                    <FlatButton
+                                    <RaisedButton
                                         onClick={this.onSubmit}
                                         primary={true}
                                         label="Enviar"

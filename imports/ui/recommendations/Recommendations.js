@@ -106,8 +106,8 @@ export default class Recommendations extends Component {
                                 </MuiThemeProvider>
                             </div>
 
-                            <div className="col-sm-2 col-2 center-likes">{playlistLikes ? playlistLikes.likes : 0} Me gusta</div>
-                            <div className="col-sm-9 col-8"></div>
+                            <div className="col-sm-4 col-3 center-likes">{playlistLikes ? playlistLikes.likes : 0} Me gusta</div>
+                            <div className="col-sm-6 col-8"></div>
                         </div>
                         <div className="row">
                             <button disabled={this.state.previousDisabled}
