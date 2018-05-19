@@ -45,13 +45,9 @@ export default class Recommendations extends Component {
     }
 
     likePlaylist() {
-        console.log("liking");
         Meteor.call("playlist.like", this.props.musicRec[0].playlists.items[this.state.currentPlaylist].uri, Meteor.user()._id)
     }
 
-    componentDidMount() {
-        console.log(this.props.likes);
-    }
 
     render() {
         // size may also be a plain string using the presets 'large' or 'compact'
@@ -73,7 +69,6 @@ export default class Recommendations extends Component {
                 }
             })
         }
-        console.log(playlistLikes);
         const view = 'list'; // or 'coverart' list
         const theme = 'white'; // or 'white' black
         let playlist = null;
