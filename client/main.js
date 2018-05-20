@@ -10,6 +10,7 @@ Accounts.ui.config({
 });
 
 Meteor.startup(()=>{
+    //esto debe ir en el main.js del servidor no en el cliente
     render(<App/>, document.getElementById("render-target"));
     $('html').attr('lang', 'es');
 });
